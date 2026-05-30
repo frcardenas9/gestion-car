@@ -1,0 +1,16 @@
+<ion-tabs>
+  <ion-tab-bar slot="bottom">
+    @for (item of tabs; track $index) {
+      @if (item.isRoute) {
+        <ion-tab-button [tab]="item.tab" [href]="item.route">
+          <ion-icon [src]="item.icon"></ion-icon>
+          <ion-label>{{ item.label }}</ion-label>
+        </ion-tab-button>
+      } @else if (!item.isRoute) {
+        <ion-tab-button (click)="onClickAdd()">
+          <ion-icon class="button" [src]="item.icon"></ion-icon>
+        </ion-tab-button>
+      }
+    }
+  </ion-tab-bar>
+</ion-tabs>
