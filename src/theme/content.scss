@@ -1,0 +1,14 @@
+ion-content {
+  --background: var(--ion-color-background-standard);
+}
+
+ion-content.white {
+  --background: var(--ion-color-white);
+}
+
+ion-content.container {
+  --padding-top: 16px;
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --padding-bottom: 16px;
+}

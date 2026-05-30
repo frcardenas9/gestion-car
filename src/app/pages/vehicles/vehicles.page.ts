@@ -10,4 +10,8 @@ export class VehiclesPage implements OnInit {
   constructor() {}
 
   ngOnInit() {}
+
+  public onClickAddVehicle() {
+    console.log('Add Vehicle');
+  }
 }
