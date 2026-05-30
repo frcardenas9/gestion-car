@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">gestion-car</string>
+    <string name="title_activity_main">gestion-car</string>
+    <string name="package_name">com.poli.gestioncar</string>
+    <string name="custom_url_scheme">com.poli.gestioncar</string>
+</resources>
