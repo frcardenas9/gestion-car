@@ -3,4 +3,9 @@
   border-radius: 50%;
   color: var(--ion-color-white);
   padding: 12px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.button.rotate {
+  transform: rotate(45deg);
 }

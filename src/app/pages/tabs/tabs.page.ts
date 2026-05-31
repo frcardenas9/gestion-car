@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { OptionsListComponent } from '@components/index';
+import { PopoverController } from '@ionic/angular';
 import { TabModel } from '@models/tabs.model';
 
 @Component({
@@ -43,8 +45,26 @@ export class TabsPage {
       isRoute: true,
     },
   ];
+  public isOpenPopover: boolean = false;
 
-  public onClickAdd() {
+  constructor(private readonly popoverController: PopoverController) {}
+
+  public async onClickAddRecord(event: Event) {
     console.log('Agregar nuevo registro');
+
+    const popover = await this.popoverController.create({
+      component: OptionsListComponent,
+      event,
+      mode: 'ios',
+      side: 'top',
+    });
+
+    await popover.present();
+
+    this.isOpenPopover = true;
+
+    await popover.onDidDismiss();
+
+    this.isOpenPopover = false;
   }
 }
