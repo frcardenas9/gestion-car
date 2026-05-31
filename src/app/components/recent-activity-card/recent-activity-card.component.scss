@@ -1,0 +1,49 @@
+.recent-activity-container {
+  padding: 16px;
+  background-color: var(--ion-color-white);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  .title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    .item {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      gap: 16px;
+      border: 1px solid var(--ion-color-primary);
+      padding: 16px;
+      border-radius: 12px;
+      background-color: var(--ion-color-white);
+
+      .icon {
+        ion-icon {
+          height: 16px;
+          width: 16px;
+          background-color: var(--ion-color-white);
+          border-radius: 50%;
+          color: var(--ion-color-primary);
+          padding: 12px;
+        }
+      }
+
+      .text {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+    }
+  }
+}

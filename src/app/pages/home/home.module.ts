@@ -7,10 +7,26 @@ import { IonicModule } from '@ionic/angular';
 import { HomePageRoutingModule } from './home-routing.module';
 
 import { HomePage } from './home.page';
-import { HeaderComponent } from '@components/index';
+import {
+  HeaderComponent,
+  SummaryCardComponent,
+  ExpensesCardComponent,
+  UpcomingAlertsCardComponent,
+  RecentActivityCardComponent,
+} from '@components/index';
 
 @NgModule({
-  imports: [CommonModule, FormsModule, IonicModule, HomePageRoutingModule, HeaderComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    HomePageRoutingModule,
+    HeaderComponent,
+    SummaryCardComponent,
+    ExpensesCardComponent,
+    UpcomingAlertsCardComponent,
+    RecentActivityCardComponent,
+  ],
   declarations: [HomePage],
 })
 export class HomePageModule {}

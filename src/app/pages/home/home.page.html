@@ -2,42 +2,12 @@
 
 <ion-content class="container">
   <div class="main-container">
-    <div class="summary-container">
-      <div class="title">
-        <p class="body-bold">Resumen del mes</p>
-        <p class="caption">Mayo 2026</p>
-      </div>
-      <div class="content">
-        <div class="item" *ngFor="let item of [0, 1, 2]">
-          <ion-icon color="primary" src="assets/icons/gas-pump-alt.svg"></ion-icon>
-          <p class="body-bold">$245k</p>
-          <p class="small">Combustible</p>
-        </div>
-      </div>
-    </div>
+    <app-summary-card></app-summary-card>
 
-    <div class="expenses-container">
-      <div class="title">
-        <p class="body-bold">Gastos totales</p>
-        <p class="caption">Desde marzo 2026</p>
-      </div>
-      <div class="content">
-        <div class="value mt-8 mb-8">
-          <p class="h2">$389.150 <span class="caption">COP</span></p>
-        </div>
-        <div class="item">
-          <p class="body">Combustible</p>
-          <p class="body-bold">$245.000</p>
-        </div>
-        <div class="item">
-          <p class="body">Mantenimiento</p>
-          <p class="body-bold">$89.000</p>
-        </div>
-        <div class="item">
-          <p class="body">Otros</p>
-          <p class="body-bold">$55.150</p>
-        </div>
-      </div>
-    </div>
+    <app-expenses-card></app-expenses-card>
+
+    <app-upcoming-alerts-card></app-upcoming-alerts-card>
+
+    <app-recent-activity-card></app-recent-activity-card>
   </div>
 </ion-content>
