@@ -7,10 +7,18 @@ import { IonicModule } from '@ionic/angular';
 import { VehiclesPageRoutingModule } from './vehicles-routing.module';
 
 import { VehiclesPage } from './vehicles.page';
-import { HeaderComponent } from '@components/index';
+import { HeaderComponent, VehiclesListComponent, EmptyStateCardComponent } from '@components/index';
 
 @NgModule({
-  imports: [CommonModule, FormsModule, IonicModule, VehiclesPageRoutingModule, HeaderComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    VehiclesPageRoutingModule,
+    HeaderComponent,
+    VehiclesListComponent,
+    EmptyStateCardComponent,
+  ],
   declarations: [VehiclesPage],
 })
 export class VehiclesPageModule {}

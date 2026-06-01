@@ -11,41 +11,10 @@
       </ion-button>
     </div>
 
-    <div class="vehicles-container">
-      <div class="item" *ngFor="let item of [0, 1]">
-        <div class="item-content">
-          <div class="icon">
-            <ion-icon src="assets/icons/car-side.svg"></ion-icon>
-          </div>
-
-          <div class="content">
-            <p class="body-bold">Mi Mazdita</p>
-            <p class="subtitle">Mazda 3 2022</p>
-            <div class="detail">
-              <p class="subtitle background">ABC-123</p>
-              <P class="subtitle">45.230 km</P>
-            </div>
-          </div>
-
-          <div class="arrow">
-            <ion-icon src="assets/icons/angle-right.svg"></ion-icon>
-          </div>
-        </div>
-        <div class="divider"></div>
-        <div class="item-buttons">
-          <ion-button class="grey" size="small">
-            <ion-icon slot="start" src="assets/icons/pencil.svg"></ion-icon>
-            <p>Editar</p>
-          </ion-button>
-          <ion-button class="grey" size="small">
-            <ion-icon slot="start" src="assets/icons/gas-pump-alt.svg"></ion-icon>
-            <p>Recargar</p>
-          </ion-button>
-          <ion-button class="danger" color="danger" size="small">
-            <ion-icon slot="icon-only" src="assets/icons/trash.svg"></ion-icon>
-          </ion-button>
-        </div>
-      </div>
-    </div>
+    @if (vehicles.length) {
+      <app-vehicles-list></app-vehicles-list>
+    } @else {
+      <app-empty-state-card></app-empty-state-card>
+    }
   </div>
 </ion-content>
