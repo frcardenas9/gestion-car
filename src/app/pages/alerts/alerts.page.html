@@ -1,5 +1,31 @@
-<app-header title="Alertas"></app-header>
+<app-header title="Alertas y recordatorios"></app-header>
 
 <ion-content class="container">
-  <ion-label>Alertas</ion-label>
+  <div class="main-container">
+    <div class="title">
+      <ion-label class="body-bold">Alertas</ion-label>
+
+      <ion-button>
+        <ion-icon slot="start" name="add"></ion-icon>
+        Crear
+      </ion-button>
+    </div>
+
+    <div class="counter-container">
+      <div class="item grey">
+        <p class="h2">3</p>
+        <p class="body">Total</p>
+      </div>
+      <div class="item warning">
+        <p class="h2">1</p>
+        <p class="body">Próximamente</p>
+      </div>
+      <div class="item danger">
+        <p class="h2">1</p>
+        <p class="body">Atrasado</p>
+      </div>
+    </div>
+
+    <app-alerts-list></app-alerts-list>
+  </div>
 </ion-content>

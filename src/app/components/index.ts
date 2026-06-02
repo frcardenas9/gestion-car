@@ -7,3 +7,6 @@ export { OptionsListComponent } from './options-list/options-list.component';
 export { VehiclesListComponent } from './vehicles-list/vehicles-list.component';
 export { VehiclesCardComponent } from './vehicles-card/vehicles-card.component';
 export { EmptyStateCardComponent } from './empty-state-card/empty-state-card.component';
+export { DividerComponent } from './divider/divider.component';
+export { AlertsListComponent } from './alerts-list/alerts-list.component';
+export { AlertsCardComponent } from './alerts-card/alerts-card.component';
