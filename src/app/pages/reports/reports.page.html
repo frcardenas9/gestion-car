@@ -1,5 +1,28 @@
 <app-header title="Reportes"></app-header>
 
 <ion-content class="container">
-  <ion-label>Reportes</ion-label>
+  <div class="main-container">
+    <div class="summary-container">
+      <div class="title">
+        <p class="body-bold">Total gastos</p>
+      </div>
+    </div>
+
+    <div class="chart-container">
+      <div class="title">
+        <p class="body-bold">Tendencia mensual</p>
+        <p class="caption">Últimos 6 meses</p>
+      </div>
+
+      <apx-chart
+        [series]="chartOptions.series!"
+        [chart]="chartOptions.chart!"
+        [dataLabels]="chartOptions.dataLabels!"
+        [stroke]="chartOptions.stroke!"
+        [title]="chartOptions.title!"
+        [grid]="chartOptions.grid!"
+        [xaxis]="chartOptions.xaxis!"
+      ></apx-chart>
+    </div>
+  </div>
 </ion-content>

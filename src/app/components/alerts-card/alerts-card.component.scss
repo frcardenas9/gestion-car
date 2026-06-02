@@ -11,7 +11,6 @@
     gap: 16px;
 
     .icon {
-      flex: 1;
       ion-icon {
         height: 24px;
         width: 24px;
@@ -26,7 +25,6 @@
       display: flex;
       flex-direction: column;
       gap: 8px;
-      flex: 3;
 
       .detail {
         display: flex;
