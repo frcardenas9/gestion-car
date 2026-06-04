@@ -14,6 +14,7 @@ import {
   IonSelectOption,
 } from '@ionic/angular/standalone';
 import { VehicleModel } from '@models/index';
+import { VehiclesService } from '@services/index';
 
 @Component({
   selector: 'app-create-vehicle-form',
@@ -45,7 +46,10 @@ export class CreateVehicleFormComponent implements OnInit {
   });
   public vehicle!: VehicleModel;
 
-  constructor(private readonly modalController: ModalController) {}
+  constructor(
+    private readonly modalController: ModalController,
+    private readonly vehiclesService: VehiclesService,
+  ) {}
 
   ngOnInit() {}
 
@@ -55,10 +59,12 @@ export class CreateVehicleFormComponent implements OnInit {
 
   public onClickSaveVehicle() {
     if (!this.form.valid) {
-      console.log('=> ~ Formulario no es válido:');
       return;
     }
     this.vehicle = this.form.value;
-    console.log('=> ~ onClickSaveVehicle ~ this.vehicle:', this.vehicle);
+
+    this.vehiclesService.add(this.vehicle);
+
+    alert('¡Vehículo guardado exitosamente!');
   }
 }
