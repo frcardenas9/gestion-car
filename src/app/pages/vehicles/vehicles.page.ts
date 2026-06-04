@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CreateVehicleFormComponent } from '@components/index';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-vehicles',
@@ -9,11 +11,15 @@ import { Component, OnInit } from '@angular/core';
 export class VehiclesPage implements OnInit {
   public vehicles: any[] = [];
 
-  constructor() {}
+  constructor(private readonly modalController: ModalController) {}
 
   ngOnInit() {}
 
-  public onClickAddVehicle() {
-    console.log('Add Vehicle');
+  public async onClickCreateVehicle() {
+    const modal = await this.modalController.create({
+      component: CreateVehicleFormComponent,
+    });
+
+    modal.present();
   }
 }

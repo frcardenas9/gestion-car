@@ -10,3 +10,4 @@ export { EmptyStateCardComponent } from './empty-state-card/empty-state-card.com
 export { DividerComponent } from './divider/divider.component';
 export { AlertsListComponent } from './alerts-list/alerts-list.component';
 export { AlertsCardComponent } from './alerts-card/alerts-card.component';
+export { CreateVehicleFormComponent } from './create-vehicle-form/create-vehicle-form.component';

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { OptionsListComponent } from '@components/index';
 import { PopoverController } from '@ionic/angular';
-import { TabModel } from '@models/tabs.model';
+import { TabModel } from '@models/index';
 
 @Component({
   selector: 'app-tabs',

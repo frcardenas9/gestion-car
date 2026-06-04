@@ -1,0 +1,102 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="onClickBackButton()">
+        <ion-icon color="secondary" slot="icon-only" src="assets/icons/angle-left.svg"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Crear vehículo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="container">
+  <div class="main-container">
+    <div class="title">
+      <p class="body-bold">Ingresa los datos del vehículo</p>
+    </div>
+    <form class="form" [formGroup]="form" (ngSubmit)="onClickSaveVehicle()">
+      <ion-select
+        label="Selecciona el tipo de vehículo"
+        labelPlacement="floating"
+        fill="outline"
+        okText="Aceptar"
+        cancelText="Cancelar"
+        interface="modal"
+        formControlName="type"
+      >
+        <ion-select-option value="carro">Carro</ion-select-option>
+        <ion-select-option value="moto">Moto</ion-select-option>
+        <ion-select-option value="bus">Bus</ion-select-option>
+        <ion-select-option value="camion">Camión</ion-select-option>
+      </ion-select>
+
+      <ion-input
+        label="Nombre del vehículo"
+        labelPlacement="floating"
+        fill="outline"
+        placeholder="Nombre"
+        formControlName="name"
+      >
+      </ion-input>
+
+      <ion-select
+        label="Selecciona la marca"
+        labelPlacement="floating"
+        fill="outline"
+        okText="Aceptar"
+        cancelText="Cancelar"
+        interface="modal"
+        formControlName="brand"
+      >
+        @for (item of [].constructor(20); track $index) {
+          <ng-container>
+            <ion-select-option value="mazda">Mazda</ion-select-option>
+            <ion-select-option value="toyota">Toyota</ion-select-option>
+            <ion-select-option value="renault">Renault</ion-select-option>
+          </ng-container>
+        }
+      </ion-select>
+
+      <ion-input
+        label="Modelo del vehículo"
+        labelPlacement="floating"
+        fill="outline"
+        placeholder="Modelo"
+        formControlName="model"
+      ></ion-input>
+
+      <ion-input
+        label="Año del vehículo"
+        labelPlacement="floating"
+        fill="outline"
+        placeholder="Año"
+        inputmode="numeric"
+        formControlName="year"
+      >
+      </ion-input>
+
+      <ion-input
+        label="Placa del vehículo"
+        labelPlacement="floating"
+        fill="outline"
+        placeholder="Placa"
+        formControlName="plate"
+      ></ion-input>
+
+      <ion-input
+        label="Capacidad del tanque (Galones)"
+        labelPlacement="floating"
+        fill="outline"
+        placeholder="Capacidad"
+        inputmode="numeric"
+        formControlName="capacity"
+      >
+      </ion-input>
+
+      <ion-button type="submit" [disabled]="form.invalid">
+        <ion-icon slot="start" src="assets/icons/car-alt.svg"></ion-icon>
+        Guardar
+      </ion-button>
+    </form>
+  </div>
+</ion-content>
