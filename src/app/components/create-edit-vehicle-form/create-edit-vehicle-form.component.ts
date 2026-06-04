@@ -14,7 +14,7 @@ import {
   IonSelectOption,
 } from '@ionic/angular/standalone';
 import { VehicleModel } from '@models/index';
-import { AlertService, VehiclesService } from '@services/index';
+import { SweetAlertService, VehiclesService } from '@services/index';
 
 @Component({
   selector: 'app-create-edit-vehicle-form',
@@ -52,7 +52,7 @@ export class CreateEditVehicleFormComponent implements OnInit {
   constructor(
     private readonly modalController: ModalController,
     private readonly vehiclesService: VehiclesService,
-    private readonly alertService: AlertService,
+    private readonly sweetAlertService: SweetAlertService,
   ) {}
 
   ngOnInit() {
@@ -81,7 +81,7 @@ export class CreateEditVehicleFormComponent implements OnInit {
 
     this.onClickBackButton(true);
 
-    this.alertService.show({
+    this.sweetAlertService.show({
       title: '¡Éxito!',
       text: this.isEditMode
         ? 'El vehículo ha sido actualizado exitosamente.'

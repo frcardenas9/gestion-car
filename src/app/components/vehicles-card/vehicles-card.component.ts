@@ -2,7 +2,7 @@ import { Component, input, OnInit, output } from '@angular/core';
 import { IonButton, IonIcon } from '@ionic/angular/standalone';
 import { DividerComponent } from '@components/divider/divider.component';
 import { VehicleModel } from '@models/index';
-import { AlertService, VehiclesService } from '@services/index';
+import { SweetAlertService, VehiclesService } from '@services/index';
 import { CreateEditVehicleFormComponent } from '@components/index';
 import { ModalController } from '@ionic/angular';
 
@@ -17,13 +17,13 @@ export class VehiclesCardComponent {
   public getAllVehicles = output<boolean>();
 
   constructor(
-    private readonly alertService: AlertService,
+    private readonly sweetAlertService: SweetAlertService,
     private readonly vehiclesService: VehiclesService,
     private readonly modalController: ModalController,
   ) {}
 
   public onClickDeleteVehicle() {
-    this.alertService
+    this.sweetAlertService
       .confirm({
         title: '¿Estás seguro?',
         text: 'Esta acción no se puede deshacer',
@@ -38,7 +38,7 @@ export class VehiclesCardComponent {
 
           this.getAllVehicles.emit(true);
 
-          this.alertService.show({
+          this.sweetAlertService.show({
             title: '¡Eliminado!',
             text: 'El registro ha sido eliminado.',
             icon: 'success',
