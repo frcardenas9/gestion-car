@@ -5,11 +5,15 @@
     </div>
 
     <div class="content">
-      <p class="body-bold">Mi Mazdita</p>
-      <p class="subtitle">Mazda 3 2022</p>
+      <p class="body-bold">{{ vehicle()?.name }}</p>
+      <p class="subtitle">{{ vehicle()?.brand }} {{ vehicle()?.model }} {{ vehicle()?.year }}</p>
       <div class="detail">
-        <p class="subtitle background">ABC-123</p>
-        <P class="subtitle">45.230 km</P>
+        @if (vehicle()?.plate) {
+          <p class="subtitle background">{{ vehicle()?.plate }}</p>
+        }
+        @if (vehicle()?.odometer) {
+          <P class="subtitle">{{ vehicle()?.odometer }}</P>
+        }
       </div>
     </div>
 

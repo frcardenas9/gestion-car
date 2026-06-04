@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, input, OnInit } from '@angular/core';
 import { VehiclesCardComponent } from '@components/vehicles-card/vehicles-card.component';
+import { VehicleModel } from '@models/index';
 
 @Component({
   selector: 'app-vehicles-list',
@@ -7,8 +8,6 @@ import { VehiclesCardComponent } from '@components/vehicles-card/vehicles-card.c
   styleUrls: ['./vehicles-list.component.scss'],
   imports: [VehiclesCardComponent],
 })
-export class VehiclesListComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit() {}
+export class VehiclesListComponent {
+  public vehicles = input.required<VehicleModel[]>();
 }

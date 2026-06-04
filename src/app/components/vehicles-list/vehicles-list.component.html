@@ -1,5 +1,5 @@
 <div class="vehicles-container">
-  @for (item of [0, 1]; track $index) {
-    <app-vehicles-card></app-vehicles-card>
+  @for (vehicle of vehicles(); track $index) {
+    <app-vehicles-card [vehicle]="vehicle"></app-vehicles-card>
   }
 </div>

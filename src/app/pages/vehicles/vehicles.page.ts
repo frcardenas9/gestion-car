@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CreateVehicleFormComponent } from '@components/index';
 import { ModalController } from '@ionic/angular';
+import { VehicleModel } from '@models/index';
+import { VehiclesService } from '@services/index';
 
 @Component({
   selector: 'app-vehicles',
@@ -8,12 +10,22 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./vehicles.page.scss'],
   standalone: false,
 })
-export class VehiclesPage implements OnInit {
-  public vehicles: any[] = [];
+export class VehiclesPage {
+  public vehicles: VehicleModel[] = [];
 
-  constructor(private readonly modalController: ModalController) {}
+  constructor(
+    private readonly modalController: ModalController,
+    private readonly vehiclesService: VehiclesService,
+  ) {}
 
-  ngOnInit() {}
+  ionViewWillEnter() {
+    this.initializeVehicles();
+  }
+
+  public async initializeVehicles() {
+    this.vehicles = await this.vehiclesService.getAll();
+    console.table(this.vehicles);
+  }
 
   public async onClickCreateVehicle() {
     const modal = await this.modalController.create({
@@ -21,5 +33,11 @@ export class VehiclesPage implements OnInit {
     });
 
     modal.present();
+
+    const { data } = await modal.onWillDismiss();
+
+    if (data?.refresh) {
+      this.initializeVehicles();
+    }
   }
 }

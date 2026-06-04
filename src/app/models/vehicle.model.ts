@@ -7,4 +7,5 @@ export interface VehicleModel {
   year?: string;
   plate?: string;
   capacity?: string;
+  odometer?: string;
 }

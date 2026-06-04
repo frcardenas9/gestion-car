@@ -54,8 +54,8 @@ export class CreateVehicleFormComponent implements OnInit {
 
   ngOnInit() {}
 
-  public onClickBackButton() {
-    this.modalController.dismiss();
+  public onClickBackButton(refresh?: boolean) {
+    this.modalController.dismiss({ refresh });
   }
 
   public onClickSaveVehicle() {
@@ -66,7 +66,7 @@ export class CreateVehicleFormComponent implements OnInit {
 
     this.vehiclesService.add(this.vehicle);
 
-    this.onClickBackButton();
+    this.onClickBackButton(true);
 
     this.alertService.show({
       title: '¡Éxito!',
