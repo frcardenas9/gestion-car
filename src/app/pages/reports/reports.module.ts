@@ -7,10 +7,18 @@ import { IonicModule } from '@ionic/angular';
 import { ReportsPageRoutingModule } from './reports-routing.module';
 
 import { ReportsPage } from './reports.page';
-import { HeaderComponent } from '@components/index';
+import { DividerComponent, HeaderComponent } from '@components/index';
 
 @NgModule({
-  imports: [CommonModule, FormsModule, IonicModule, ReportsPageRoutingModule, HeaderComponent, NgApexchartsModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    ReportsPageRoutingModule,
+    HeaderComponent,
+    DividerComponent,
+    NgApexchartsModule,
+  ],
   declarations: [ReportsPage],
 })
 export class ReportsPageModule {}

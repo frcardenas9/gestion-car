@@ -18,6 +18,81 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+
+      .buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+
+        span {
+          display: flex;
+          gap: 8px;
+          align-items: center;
+
+          background-color: var(--ion-color-secondary);
+          padding: 8px 12px;
+          border-radius: 12px;
+        }
+      }
+    }
+  }
+
+  .detail-container {
+    border: 1px solid var(--ion-color-grey);
+    box-shadow: var(--shadow);
+    background-color: var(--ion-color-white);
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .content {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+
+      .text {
+        flex: 1;
+        text-align: center;
+      }
+
+      .value {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        .value-item {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+
+        .dot {
+          width: 16px;
+          height: 16px;
+          background-color: var(--ion-color-primary);
+          opacity: 0.6;
+          border-radius: 50%;
+          display: inline-block;
+        }
+      }
+
+      .description {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 8px;
+      }
+    }
   }
 
   .chart-container {

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 import {
-  ChartComponent,
   ApexAxisChartSeries,
   ApexNonAxisChartSeries,
   ApexChart,
@@ -20,7 +19,6 @@ import {
   ApexAnnotations,
   ApexStates,
   ApexTheme,
-  NgApexchartsModule,
 } from 'ng-apexcharts';
 
 export type ChartOptions = {
@@ -57,7 +55,7 @@ export class ReportsPage implements OnInit {
     series: [
       {
         name: 'Total',
-        data: [10000, 41000, 35000, 51000, 49000, 62000, 69000, 91000, 148000],
+        data: [51000, 55000, 62000, 69000, 91000, 148000],
       },
     ],
     chart: {
@@ -84,7 +82,7 @@ export class ReportsPage implements OnInit {
       },
     },
     xaxis: {
-      categories: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep'],
+      categories: ['Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep'],
     },
   };
 
