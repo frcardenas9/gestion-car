@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AlertModel } from '@models/index';
+import { SweetAlertModel } from '@models/index';
 
 import Swal from 'sweetalert2';
 
@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
   providedIn: 'root',
 })
 export class AlertService {
-  public show(alert: AlertModel) {
+  public show(alert: SweetAlertModel) {
     Swal.fire({
       title: alert?.title ?? '',
       text: alert?.text ?? '',
@@ -17,7 +17,7 @@ export class AlertService {
     });
   }
 
-  public confirm(alert: AlertModel) {
+  public confirm(alert: SweetAlertModel) {
     return Swal.fire({
       title: alert?.title ?? '',
       text: alert?.text ?? '',

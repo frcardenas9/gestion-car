@@ -1,3 +1,3 @@
 export { TabModel } from '@models/tab.model';
 export { VehicleModel } from './vehicle.model';
-export { AlertModel } from './alert.model';
+export { SweetAlertModel } from './alert.model';

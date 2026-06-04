@@ -14,7 +14,10 @@
     @if (vehicles.length) {
       <app-vehicles-list [vehicles]="vehicles" (getAllVehicles)="getAllVehiclesHandler($event)"></app-vehicles-list>
     } @else {
-      <app-empty-state-card></app-empty-state-card>
+      <app-empty-state-card
+        title="Bievenido a GestionCar"
+        description="Empieza ahora registrando tu primer vehículo"
+      ></app-empty-state-card>
     }
   </div>
 </ion-content>

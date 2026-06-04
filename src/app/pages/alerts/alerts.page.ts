@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   standalone: false,
 })
 export class AlertsPage implements OnInit {
+  public alerts: any[] = [];
+
   constructor() {}
 
   ngOnInit() {}

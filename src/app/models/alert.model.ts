@@ -1,6 +1,6 @@
 import { SweetAlertIcon } from 'sweetalert2';
 
-export interface AlertModel {
+export interface SweetAlertModel {
   title?: string;
   text?: string;
   icon?: SweetAlertIcon;

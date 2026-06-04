@@ -3,7 +3,7 @@
 <ion-content class="container">
   <div class="main-container">
     <div class="title">
-      <ion-label class="body-bold">Alertas</ion-label>
+      <ion-label class="body-bold">Mis alertas</ion-label>
 
       <ion-button>
         <ion-icon slot="start" name="add"></ion-icon>
@@ -11,21 +11,28 @@
       </ion-button>
     </div>
 
-    <div class="counter-container">
-      <div class="item grey">
-        <p class="h2">3</p>
-        <p class="body">Total</p>
+    @if (alerts.length) {
+      <div class="counter-container">
+        <div class="item grey">
+          <p class="h2">3</p>
+          <p class="body">Total</p>
+        </div>
+        <div class="item warning">
+          <p class="h2">1</p>
+          <p class="body">Próximamente</p>
+        </div>
+        <div class="item danger">
+          <p class="h2">1</p>
+          <p class="body">Atrasado</p>
+        </div>
       </div>
-      <div class="item warning">
-        <p class="h2">1</p>
-        <p class="body">Próximamente</p>
-      </div>
-      <div class="item danger">
-        <p class="h2">1</p>
-        <p class="body">Atrasado</p>
-      </div>
-    </div>
 
-    <app-alerts-list></app-alerts-list>
+      <app-alerts-list></app-alerts-list>
+    } @else {
+      <app-empty-state-card
+        title="Bievenido a GestionCar"
+        description="Aquí puedes crear alertas o programar recordatorios"
+      ></app-empty-state-card>
+    }
   </div>
 </ion-content>
