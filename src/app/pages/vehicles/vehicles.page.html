@@ -12,7 +12,7 @@
     </div>
 
     @if (vehicles.length) {
-      <app-vehicles-list [vehicles]="vehicles"></app-vehicles-list>
+      <app-vehicles-list [vehicles]="vehicles" (getAllVehicles)="getAllVehiclesHandler($event)"></app-vehicles-list>
     } @else {
       <app-empty-state-card></app-empty-state-card>
     }

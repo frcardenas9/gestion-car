@@ -1,4 +1,4 @@
-import { Component, input, OnInit } from '@angular/core';
+import { Component, input, OnInit, output } from '@angular/core';
 import { VehiclesCardComponent } from '@components/vehicles-card/vehicles-card.component';
 import { VehicleModel } from '@models/index';
 
@@ -10,4 +10,9 @@ import { VehicleModel } from '@models/index';
 })
 export class VehiclesListComponent {
   public vehicles = input.required<VehicleModel[]>();
+  public getAllVehicles = output<boolean>();
+
+  public getAllVehiclesHandler(event: boolean) {
+    this.getAllVehicles.emit(event);
+  }
 }

@@ -19,10 +19,10 @@ export class VehiclesPage {
   ) {}
 
   ionViewWillEnter() {
-    this.initializeVehicles();
+    this.getAllVehicles();
   }
 
-  public async initializeVehicles() {
+  public async getAllVehicles() {
     this.vehicles = await this.vehiclesService.getAll();
     console.table(this.vehicles);
   }
@@ -37,7 +37,13 @@ export class VehiclesPage {
     const { data } = await modal.onWillDismiss();
 
     if (data?.refresh) {
-      this.initializeVehicles();
+      this.getAllVehicles();
+    }
+  }
+
+  public getAllVehiclesHandler(event: boolean) {
+    if (event) {
+      this.getAllVehicles();
     }
   }
 }

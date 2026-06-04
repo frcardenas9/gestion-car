@@ -1,5 +1,5 @@
 <div class="vehicles-container">
   @for (vehicle of vehicles(); track $index) {
-    <app-vehicles-card [vehicle]="vehicle"></app-vehicles-card>
+    <app-vehicles-card [vehicle]="vehicle" (getAllVehicles)="getAllVehiclesHandler($event)"></app-vehicles-card>
   }
 </div>

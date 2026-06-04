@@ -5,4 +5,6 @@ export interface AlertModel {
   text?: string;
   icon?: SweetAlertIcon;
   confirmButtonText?: string;
+  cancelButtonText?: string;
+  showCancelButton?: boolean;
 }
