@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, input, OnInit, output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import {
@@ -17,9 +17,9 @@ import { VehicleModel } from '@models/index';
 import { AlertService, VehiclesService } from '@services/index';
 
 @Component({
-  selector: 'app-create-vehicle-form',
-  templateUrl: './create-vehicle-form.component.html',
-  styleUrls: ['./create-vehicle-form.component.scss'],
+  selector: 'app-create-edit-vehicle-form',
+  templateUrl: './create-edit-vehicle-form.component.html',
+  styleUrls: ['./create-edit-vehicle-form.component.scss'],
   imports: [
     IonInput,
     IonContent,
@@ -34,7 +34,11 @@ import { AlertService, VehiclesService } from '@services/index';
     ReactiveFormsModule,
   ],
 })
-export class CreateVehicleFormComponent implements OnInit {
+export class CreateEditVehicleFormComponent implements OnInit {
+  public vehicle = input<VehicleModel>();
+  public getAllVehicles = output<boolean>();
+  public isEditMode: boolean = false;
+
   public form: FormGroup = new FormGroup({
     type: new FormControl('', [Validators.required]),
     name: new FormControl('', [Validators.required]),
@@ -44,7 +48,6 @@ export class CreateVehicleFormComponent implements OnInit {
     plate: new FormControl('', []),
     capacity: new FormControl('', [Validators.required]),
   });
-  public vehicle!: VehicleModel;
 
   constructor(
     private readonly modalController: ModalController,
@@ -52,7 +55,12 @@ export class CreateVehicleFormComponent implements OnInit {
     private readonly alertService: AlertService,
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (this.vehicle()) {
+      this.form.patchValue(this.vehicle());
+      this.isEditMode = true;
+    }
+  }
 
   public onClickBackButton(refresh?: boolean) {
     this.modalController.dismiss({ refresh });
@@ -62,15 +70,22 @@ export class CreateVehicleFormComponent implements OnInit {
     if (!this.form.valid) {
       return;
     }
-    this.vehicle = this.form.value;
+    const vehicleForm = this.form.value;
 
-    this.vehiclesService.add(this.vehicle);
+    if (this.isEditMode) {
+      this.vehiclesService.update(this.vehicle().id, vehicleForm);
+      this.getAllVehicles.emit(true);
+    } else {
+      this.vehiclesService.add(vehicleForm);
+    }
 
     this.onClickBackButton(true);
 
     this.alertService.show({
       title: '¡Éxito!',
-      text: 'El vehículo ha sido creado exitosamente.',
+      text: this.isEditMode
+        ? 'El vehículo ha sido actualizado exitosamente.'
+        : 'El vehículo ha sido creado exitosamente.',
       icon: 'success',
     });
   }

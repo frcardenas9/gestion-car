@@ -25,7 +25,7 @@ export class AlertService {
       showCancelButton: alert?.showCancelButton ?? false,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: alert?.confirmButtonText ?? 'Sí, eliminarlo!',
+      confirmButtonText: alert?.confirmButtonText ?? '¡Sí, eliminarlo!',
       cancelButtonText: alert?.cancelButtonText ?? 'Cancelar',
       heightAuto: false,
     });

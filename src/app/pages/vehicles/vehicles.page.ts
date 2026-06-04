@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { CreateVehicleFormComponent } from '@components/index';
+import { Component } from '@angular/core';
+import { CreateEditVehicleFormComponent } from '@components/index';
 import { ModalController } from '@ionic/angular';
 import { VehicleModel } from '@models/index';
 import { VehiclesService } from '@services/index';
@@ -29,7 +29,7 @@ export class VehiclesPage {
 
   public async onClickCreateVehicle() {
     const modal = await this.modalController.create({
-      component: CreateVehicleFormComponent,
+      component: CreateEditVehicleFormComponent,
     });
 
     modal.present();

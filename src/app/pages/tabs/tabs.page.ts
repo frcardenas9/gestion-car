@@ -50,8 +50,6 @@ export class TabsPage {
   constructor(private readonly popoverController: PopoverController) {}
 
   public async onClickAddRecord(event: Event) {
-    console.log('Agregar nuevo registro');
-
     const popover = await this.popoverController.create({
       component: OptionsListComponent,
       event,

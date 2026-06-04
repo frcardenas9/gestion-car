@@ -3,6 +3,8 @@ import { IonButton, IonIcon } from '@ionic/angular/standalone';
 import { DividerComponent } from '@components/divider/divider.component';
 import { VehicleModel } from '@models/index';
 import { AlertService, VehiclesService } from '@services/index';
+import { CreateEditVehicleFormComponent } from '@components/index';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-vehicles-card',
@@ -17,6 +19,7 @@ export class VehiclesCardComponent {
   constructor(
     private readonly alertService: AlertService,
     private readonly vehiclesService: VehiclesService,
+    private readonly modalController: ModalController,
   ) {}
 
   public onClickDeleteVehicle() {
@@ -26,7 +29,7 @@ export class VehiclesCardComponent {
         text: 'Esta acción no se puede deshacer',
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonText: 'Sí, eliminarlo!',
+        confirmButtonText: '¡Sí, eliminarlo!',
         cancelButtonText: 'Cancelar',
       })
       .then(async (result) => {
@@ -42,5 +45,22 @@ export class VehiclesCardComponent {
           });
         }
       });
+  }
+
+  public async onClickEditVehicle() {
+    const modal = await this.modalController.create({
+      component: CreateEditVehicleFormComponent,
+      componentProps: {
+        vehicle: this.vehicle(),
+      },
+    });
+
+    modal.present();
+
+    const { data } = await modal.onWillDismiss();
+
+    if (data?.refresh) {
+      this.getAllVehicles.emit(true);
+    }
   }
 }

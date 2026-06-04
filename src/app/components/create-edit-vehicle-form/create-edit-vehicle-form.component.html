@@ -5,14 +5,22 @@
         <ion-icon color="secondary" slot="icon-only" src="assets/icons/angle-left.svg"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title>Crear vehículo</ion-title>
+    @if (isEditMode) {
+      <ion-title>Editar vehículo</ion-title>
+    } @else {
+      <ion-title>Crear vehículo</ion-title>
+    }
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="container">
   <div class="main-container">
     <div class="title">
-      <p class="body-bold">Ingresa los datos del vehículo</p>
+      @if (isEditMode) {
+        <p class="body-bold">Edita los datos del vehículo</p>
+      } @else {
+        <p class="body-bold">Ingresa los datos del vehículo</p>
+      }
     </div>
     <form class="form" [formGroup]="form" (ngSubmit)="onClickSaveVehicle()">
       <ion-select
