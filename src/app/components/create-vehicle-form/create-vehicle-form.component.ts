@@ -14,7 +14,7 @@ import {
   IonSelectOption,
 } from '@ionic/angular/standalone';
 import { VehicleModel } from '@models/index';
-import { VehiclesService } from '@services/index';
+import { AlertService, VehiclesService } from '@services/index';
 
 @Component({
   selector: 'app-create-vehicle-form',
@@ -49,6 +49,7 @@ export class CreateVehicleFormComponent implements OnInit {
   constructor(
     private readonly modalController: ModalController,
     private readonly vehiclesService: VehiclesService,
+    private readonly alertService: AlertService,
   ) {}
 
   ngOnInit() {}
@@ -65,6 +66,12 @@ export class CreateVehicleFormComponent implements OnInit {
 
     this.vehiclesService.add(this.vehicle);
 
-    alert('¡Vehículo guardado exitosamente!');
+    this.onClickBackButton();
+
+    this.alertService.show({
+      title: '¡Éxito!',
+      text: 'El vehículo ha sido creado exitosamente.',
+      icon: 'success',
+    });
   }
 }
