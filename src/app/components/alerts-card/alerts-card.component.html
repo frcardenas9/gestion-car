@@ -1,16 +1,30 @@
-<div class="item">
+<div class="item" [style.--border-color]="alert()?.borderColor">
   <div class="item-content">
     <div class="icon">
-      <ion-icon src="assets/icons/bell.svg"></ion-icon>
+      <ion-icon
+        [src]="alert()?.icon"
+        [style.--background-color]="alert()?.backgroundColor"
+        [style.--color]="alert()?.color"
+      ></ion-icon>
     </div>
 
     <div class="content">
       <div class="detail">
-        <p class="body-bold">Cambio de aceite</p>
-        <p class="subtitle background">Proximamente</p>
+        <p class="body-bold">{{ alert()?.name }}</p>
+        <p
+          class="subtitle background"
+          [style.--background-color]="alert()?.backgroundColor"
+          [style.--color]="alert()?.color"
+        >
+          {{ alert()?.status }}
+        </p>
       </div>
-      <p class="subtitle">Mazda 3 2022</p>
-      <P class="subtitle">45.230 km</P>
+      <div class="date">
+        <ion-icon slot="start" src="assets/icons/calendar.svg"></ion-icon>
+        <p class="subtitle">
+          {{ alert()?.dateFormatted }}
+        </p>
+      </div>
     </div>
   </div>
   <app-divider></app-divider>

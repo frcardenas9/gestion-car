@@ -1,5 +1,5 @@
 <div class="alerts-container">
-  @for (item of [0, 1]; track $index) {
-    <app-alerts-card></app-alerts-card>
+  @for (alert of alerts(); track $index) {
+    <app-alerts-card [alert]="alert"></app-alerts-card>
   }
 </div>

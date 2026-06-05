@@ -1,0 +1,45 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="onClickBackButton()">
+        <ion-icon color="secondary" slot="icon-only" src="assets/icons/angle-left.svg"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    @if (isEditMode) {
+      <ion-title>Editar alerta</ion-title>
+    } @else {
+      <ion-title>Crear alerta</ion-title>
+    }
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="container">
+  <div class="main-container">
+    <div class="title">
+      @if (isEditMode) {
+        <p class="body-bold">Editar alerta</p>
+      } @else {
+        <p class="body-bold">Crear alerta</p>
+      }
+    </div>
+    <form class="form" [formGroup]="form" (ngSubmit)="onClickSaveVehicle()">
+      <ion-input
+        label="Nombre (ej.: Comprar SOAT)"
+        labelPlacement="floating"
+        fill="outline"
+        placeholder="Nombre"
+        formControlName="name"
+      >
+      </ion-input>
+
+      <ion-datetime [min]="minDate" presentation="date" formControlName="date">
+        <span slot="title">Selecciona la fecha</span>
+      </ion-datetime>
+
+      <ion-button type="submit" [disabled]="form.invalid">
+        <ion-icon slot="start" src="assets/icons/alarm-plus.svg"></ion-icon>
+        Guardar
+      </ion-button>
+    </form>
+  </div>
+</ion-content>

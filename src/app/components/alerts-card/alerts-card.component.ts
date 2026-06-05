@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, input, OnInit } from '@angular/core';
 import { IonIcon, IonButton } from '@ionic/angular/standalone';
 import { DividerComponent } from '@components/divider/divider.component';
+import { AlertModel } from '@models/index';
 
 @Component({
   selector: 'app-alerts-card',
@@ -8,8 +9,6 @@ import { DividerComponent } from '@components/divider/divider.component';
   styleUrls: ['./alerts-card.component.scss'],
   imports: [IonButton, IonIcon, DividerComponent],
 })
-export class AlertsCardComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit() {}
+export class AlertsCardComponent {
+  public alert = input.required<AlertModel>();
 }

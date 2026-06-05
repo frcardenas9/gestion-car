@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, input, OnInit } from '@angular/core';
 import { AlertsCardComponent } from '@components/alerts-card/alerts-card.component';
+import { AlertModel } from '@models/index';
 
 @Component({
   selector: 'app-alerts-list',
@@ -7,8 +8,6 @@ import { AlertsCardComponent } from '@components/alerts-card/alerts-card.compone
   styleUrls: ['./alerts-list.component.scss'],
   imports: [AlertsCardComponent],
 })
-export class AlertsListComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit() {}
+export class AlertsListComponent {
+  public alerts = input.required<AlertModel[]>();
 }

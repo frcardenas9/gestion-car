@@ -5,7 +5,7 @@
     <div class="title">
       <ion-label class="body-bold">Mis alertas</ion-label>
 
-      <ion-button>
+      <ion-button (click)="onClickCreateAlert()">
         <ion-icon slot="start" name="add"></ion-icon>
         Crear
       </ion-button>
@@ -14,20 +14,28 @@
     @if (alerts.length) {
       <div class="counter-container">
         <div class="item grey">
-          <p class="h2">3</p>
-          <p class="body">Total</p>
+          <p class="h2">{{ alertsCounter?.total }}</p>
+          <p class="caption">Total</p>
+        </div>
+        <div class="item success">
+          <p class="h2">{{ alertsCounter?.distant }}</p>
+          <p class="caption">Lejana</p>
+        </div>
+        <div class="item info">
+          <p class="h2">{{ alertsCounter?.upcoming }}</p>
+          <p class="caption">Próxima</p>
         </div>
         <div class="item warning">
-          <p class="h2">1</p>
-          <p class="body">Próximamente</p>
+          <p class="h2">{{ alertsCounter?.urgent }}</p>
+          <p class="caption">Urgente</p>
         </div>
         <div class="item danger">
-          <p class="h2">1</p>
-          <p class="body">Atrasado</p>
+          <p class="h2">{{ alertsCounter?.expired }}</p>
+          <p class="caption">Vencida</p>
         </div>
       </div>
 
-      <app-alerts-list></app-alerts-list>
+      <app-alerts-list [alerts]="alerts"></app-alerts-list>
     } @else {
       <app-empty-state-card
         title="Bievenido a GestionCar"
