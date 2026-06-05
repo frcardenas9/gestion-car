@@ -15,27 +15,34 @@
       <div class="counter-container">
         <div class="item grey">
           <p class="h2">{{ alertsCounter?.total }}</p>
-          <p class="caption">Total</p>
+          <p class="body-bold">Total</p>
+          <ion-icon
+            src="assets/icons/angle-down.svg"
+            [class.rotate]="isOpenCounter"
+            (click)="onClickOpenCounter()"
+          ></ion-icon>
         </div>
-        <div class="item success">
-          <p class="h2">{{ alertsCounter?.distant }}</p>
-          <p class="caption">Lejana</p>
-        </div>
-        <div class="item info">
-          <p class="h2">{{ alertsCounter?.upcoming }}</p>
-          <p class="caption">Próxima</p>
-        </div>
-        <div class="item warning">
-          <p class="h2">{{ alertsCounter?.urgent }}</p>
-          <p class="caption">Urgente</p>
-        </div>
-        <div class="item danger">
-          <p class="h2">{{ alertsCounter?.expired }}</p>
-          <p class="caption">Vencida</p>
+        <div class="counter-detail" [class.open]="isOpenCounter">
+          <div class="item success">
+            <p class="h2">{{ alertsCounter?.distant }}</p>
+            <p class="caption">Lejana</p>
+          </div>
+          <div class="item info">
+            <p class="h2">{{ alertsCounter?.upcoming }}</p>
+            <p class="caption">Próxima</p>
+          </div>
+          <div class="item warning">
+            <p class="h2">{{ alertsCounter?.urgent }}</p>
+            <p class="caption">Urgente</p>
+          </div>
+          <div class="item danger">
+            <p class="h2">{{ alertsCounter?.expired }}</p>
+            <p class="caption">Vencida</p>
+          </div>
         </div>
       </div>
 
-      <app-alerts-list [alerts]="alerts"></app-alerts-list>
+      <app-alerts-list [alerts]="alerts" (getAllAlerts)="getAllAlertsHandler($event)"></app-alerts-list>
     } @else {
       <app-empty-state-card
         title="Bievenido a GestionCar"

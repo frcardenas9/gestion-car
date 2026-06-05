@@ -34,9 +34,19 @@ import { SweetAlertService, AlertsService } from '@services/index';
 })
 export class CreateEditAlertFormComponent implements OnInit {
   public alert = input<AlertModel>();
+  public permissionEnabled = input<boolean>();
   public getAllAlerts = output<boolean>();
   public isEditMode: boolean = false;
-  public minDate: string = new Date().toISOString().split('T')[0];
+  public minDate: string = (() => {
+    const date = new Date();
+    date.setDate(date.getDate() + 1);
+
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+
+    return `${year}-${month}-${day}`;
+  })();
 
   public form: FormGroup = new FormGroup({
     name: new FormControl('', [Validators.required]),
@@ -60,17 +70,27 @@ export class CreateEditAlertFormComponent implements OnInit {
     this.modalController.dismiss({ refresh });
   }
 
-  public onClickSaveVehicle() {
+  public async onClickSaveAlert() {
     if (!this.form.valid) {
       return;
     }
     const alertForm = this.form.value;
 
     if (this.isEditMode) {
-      this.alertsService.update(this.alert().id, alertForm);
+      const id = await this.alertsService.update(this.alert().id, alertForm);
+      this.schedule({
+        id,
+        name: alertForm?.name,
+        date: alertForm?.date,
+      });
       this.getAllAlerts.emit(true);
     } else {
-      this.alertsService.add(alertForm);
+      const id = await this.alertsService.add(alertForm);
+      this.schedule({
+        id,
+        name: alertForm?.name,
+        date: alertForm?.date,
+      });
     }
 
     this.onClickBackButton(true);
@@ -80,5 +100,9 @@ export class CreateEditAlertFormComponent implements OnInit {
       text: this.isEditMode ? 'La alerta ha sido actualizada exitosamente.' : 'La alerta ha sido creada exitosamente.',
       icon: 'success',
     });
+  }
+
+  private schedule(alert: AlertModel) {
+    this.alertsService.scheduleNotification(alert);
   }
 }

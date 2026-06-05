@@ -21,19 +21,28 @@
       </div>
       <div class="date">
         <ion-icon slot="start" src="assets/icons/calendar.svg"></ion-icon>
-        <p class="subtitle">
-          {{ alert()?.dateFormatted }}
-        </p>
+        <div class="date-detail">
+          <p class="subtitle">
+            {{ alert()?.dateFormatted }}
+          </p>
+          @if (alert()?.remainingDays > 0) {
+            <p class="subtitle">Faltan {{ alert()?.remainingDays }} días</p>
+          } @else if (alert()?.remainingDays < 0) {
+            <p class="subtitle">Hace {{ alert()?.remainingDays * -1 }} días</p>
+          } @else if (alert()?.remainingDays === 0) {
+            <p class="subtitle">Vence hoy</p>
+          }
+        </div>
       </div>
     </div>
   </div>
   <app-divider></app-divider>
   <div class="item-buttons">
-    <ion-button class="success" size="small">
+    <!-- <ion-button class="success" size="small">
       <ion-icon slot="start" src="assets/icons/check.svg"></ion-icon>
       <p>Realizado</p>
-    </ion-button>
-    <ion-button class="grey" size="small">
+    </ion-button> -->
+    <ion-button class="grey" size="small" (click)="onClickCancelAlert()">
       <ion-icon slot="start" src="assets/icons/cross.svg"></ion-icon>
       <p>Descartar</p>
     </ion-button>

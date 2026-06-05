@@ -1,4 +1,4 @@
-import { Component, input, OnInit } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { AlertsCardComponent } from '@components/alerts-card/alerts-card.component';
 import { AlertModel } from '@models/index';
 
@@ -10,4 +10,9 @@ import { AlertModel } from '@models/index';
 })
 export class AlertsListComponent {
   public alerts = input.required<AlertModel[]>();
+  public getAllAlerts = output<boolean>();
+
+  public getAllAlertsHandler(event: boolean) {
+    this.getAllAlerts.emit(event);
+  }
 }

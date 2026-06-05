@@ -1,7 +1,7 @@
 .item {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 12px;
   border: 1px solid var(--border-color);
   border-radius: 12px;
   padding: 16px;
@@ -36,19 +36,25 @@
         .background {
           background-color: var(--background-color);
           color: var(--color);
-          padding: 8px;
+          padding: 4px 8px;
           border-radius: 12px;
         }
       }
 
       .date {
         display: flex;
-        gap: 12px;
         align-items: center;
+        gap: 8px;
 
         ion-icon {
           height: 16px;
           width: 16px;
+        }
+
+        .date-detail {
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
         }
       }
     }
@@ -62,9 +68,14 @@
       text-transform: capitalize;
     }
 
+    ion-icon {
+      height: 12px;
+      width: 12px;
+    }
+
     .success {
-      --color: var(--ion-color-primary);
-      --background: var(--ion-color-secondary);
+      --color: var(--ion-color-secondary);
+      --background: var(--ion-color-primary);
       flex: 1;
     }
 

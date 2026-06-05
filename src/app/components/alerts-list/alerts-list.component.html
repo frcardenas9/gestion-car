@@ -1,5 +1,5 @@
 <div class="alerts-container">
   @for (alert of alerts(); track $index) {
-    <app-alerts-card [alert]="alert"></app-alerts-card>
+    <app-alerts-card [alert]="alert" (getAllAlerts)="getAllAlertsHandler($event)"></app-alerts-card>
   }
 </div>
