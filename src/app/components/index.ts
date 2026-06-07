@@ -11,3 +11,4 @@ export { DividerComponent } from './divider/divider.component';
 export { AlertsListComponent } from './alerts-list/alerts-list.component';
 export { AlertsCardComponent } from './alerts-card/alerts-card.component';
 export { CreateEditVehicleFormComponent } from './create-edit-vehicle-form/create-edit-vehicle-form.component';
+export { RefuelFormComponent } from './refuel-form/refuel-form.component';

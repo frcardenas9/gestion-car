@@ -16,23 +16,72 @@
         }
       </div>
     </div>
-
-    <div class="arrow">
-      <ion-icon src="assets/icons/angle-right.svg"></ion-icon>
-    </div>
   </div>
-  <app-divider></app-divider>
-  <div class="item-buttons">
-    <ion-button class="grey" size="small" (click)="onClickEditVehicle()">
-      <ion-icon slot="start" src="assets/icons/pencil.svg"></ion-icon>
-      <p>Editar</p>
-    </ion-button>
-    <ion-button class="grey" size="small">
-      <ion-icon slot="start" src="assets/icons/gas-pump-alt.svg"></ion-icon>
-      <p>Recargar</p>
-    </ion-button>
-    <ion-button class="danger" color="danger" size="small" (click)="onClickDeleteVehicle()">
-      <ion-icon slot="icon-only" src="assets/icons/trash.svg"></ion-icon>
-    </ion-button>
+
+  <div class="arrow">
+    <ion-icon src="assets/icons/angle-down.svg" [class.rotate]="isOpenDetail" (click)="onClickOpenDetail()"></ion-icon>
+  </div>
+
+  <div class="card-detail" [class.open]="isOpenDetail">
+    <div class="item-buttons">
+      <ion-button class="grey" size="small" (click)="onClickEditVehicle()">
+        <ion-icon class="size-12" slot="start" src="assets/icons/pencil.svg"></ion-icon>
+        <p>Editar</p>
+      </ion-button>
+      <ion-button class="grey" size="small" (click)="onClickCreateRefuelVehicle()">
+        <ion-icon class="size-12" slot="start" src="assets/icons/gas-pump-alt.svg"></ion-icon>
+        <p>Recargar</p>
+      </ion-button>
+      <ion-button class="danger" color="danger" size="small" (click)="onClickDeleteVehicle()">
+        <ion-icon slot="icon-only" src="assets/icons/trash.svg"></ion-icon>
+      </ion-button>
+    </div>
+
+    <app-divider></app-divider>
+
+    <div class="refuel-history-container">
+      <div class="title mb-8">
+        <p class="subtitle-bold">Historial de recargas</p>
+        <p class="subtitle">{{ refuelsByVehicle?.length }} registros</p>
+      </div>
+      <div class="content">
+        @for (item of refuelsByVehicle; track $index) {
+          <div class="detail">
+            <div class="title">
+              <p class="subtitle">{{ item?.date | date: "dd/MM/yyyy" }}</p>
+              <p class="subtitle">${{ item?.total | number: "1.0-0" }}</p>
+            </div>
+            <div class="value">
+              <div class="item-value">
+                <p class="subtitle">Galones</p>
+                <p class="subtitle-bold">{{ item?.fuelAmount | number: "1.1-2" }}</p>
+              </div>
+              <div class="item-value">
+                <p class="subtitle">Odómetro</p>
+                <p class="subtitle-bold">{{ item?.odometer | number: "1.0-0" }}</p>
+              </div>
+              <div class="item-value">
+                <p class="subtitle">Rendimiento</p>
+                <p class="subtitle-bold">{{ item.performance ? (item.performance | number: "1.1-2") : "-" }} km/gl</p>
+              </div>
+            </div>
+            <div class="buttons">
+              <ion-icon
+                slot="icon-only"
+                class="button-icon"
+                src="assets/icons/pencil.svg"
+                (click)="onClickEditRefuelVehicle(item)"
+              ></ion-icon>
+              <ion-icon
+                slot="icon-only"
+                class="button-icon"
+                src="assets/icons/trash.svg"
+                (click)="onClickDeleteRefuelVehicle(item)"
+              ></ion-icon>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
   </div>
 </div>

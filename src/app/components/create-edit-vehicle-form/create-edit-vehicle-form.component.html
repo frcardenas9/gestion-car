@@ -56,13 +56,9 @@
         interface="modal"
         formControlName="brand"
       >
-        @for (item of [].constructor(20); track $index) {
-          <ng-container>
-            <ion-select-option value="mazda">Mazda</ion-select-option>
-            <ion-select-option value="toyota">Toyota</ion-select-option>
-            <ion-select-option value="renault">Renault</ion-select-option>
-          </ng-container>
-        }
+        <ion-select-option value="Mazda">Mazda</ion-select-option>
+        <ion-select-option value="Toyota">Toyota</ion-select-option>
+        <ion-select-option value="Renault">Renault</ion-select-option>
       </ion-select>
 
       <ion-input

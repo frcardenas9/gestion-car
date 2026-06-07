@@ -7,9 +7,9 @@
           <ion-label>{{ item.label }}</ion-label>
         </ion-tab-button>
       } @else if (!item.isRoute) {
-        <ion-tab-button (click)="onClickAddRecord($event)">
+        <!-- <ion-tab-button (click)="onClickAddRecord($event)">
           <ion-icon class="button" [class.rotate]="isOpenPopover" [src]="item.icon"></ion-icon>
-        </ion-tab-button>
+        </ion-tab-button> -->
       }
     }
   </ion-tab-bar>

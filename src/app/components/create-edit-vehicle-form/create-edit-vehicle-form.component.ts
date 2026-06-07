@@ -36,7 +36,6 @@ import { SweetAlertService, VehiclesService } from '@services/index';
 })
 export class CreateEditVehicleFormComponent implements OnInit {
   public vehicle = input<VehicleModel>();
-  public getAllVehicles = output<boolean>();
   public isEditMode: boolean = false;
 
   public form: FormGroup = new FormGroup({
@@ -74,7 +73,6 @@ export class CreateEditVehicleFormComponent implements OnInit {
 
     if (this.isEditMode) {
       this.vehiclesService.update(this.vehicle().id, vehicleForm);
-      this.getAllVehicles.emit(true);
     } else {
       this.vehiclesService.add(vehicleForm);
     }

@@ -12,6 +12,7 @@ export class DatabaseService extends Dexie {
     this.version(1).stores({
       vehicles: '++id, type, name, brand, model, year, plate, capacity',
       alerts: '++id, name, date',
+      refuels: '++id, date, odometer, price, total, fuelAmount, isFilling, vehicleId',
     });
   }
 
