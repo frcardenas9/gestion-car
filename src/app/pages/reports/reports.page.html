@@ -2,27 +2,48 @@
 
 <ion-content class="container">
   <div class="main-container">
+    <ion-select
+      label="Selecciona el período"
+      labelPlacement="floating"
+      fill="outline"
+      okText="Aceptar"
+      cancelText="Cancelar"
+      interface="action-sheet"
+      [(ngModel)]="periodSelected"
+      (ionChange)="handlePeriodChange($event)"
+    >
+      <ion-select-option value="all">Todo el período</ion-select-option>
+      <ion-select-option value="current">Mes actual</ion-select-option>
+      <ion-select-option value="previous">Mes anterior</ion-select-option>
+      <ion-select-option value="three-months">Últimos 3 meses</ion-select-option>
+      <ion-select-option value="six-months">Últimos 6 meses</ion-select-option>
+      <ion-select-option value="last-year">Último año</ion-select-option>
+    </ion-select>
+
     <div class="summary-container">
       <div class="title">
         <p class="body-bold">Total gastos</p>
       </div>
       <div class="content">
         <div class="text">
-          <p class="h2">$836.800 <span class="caption">Mes</span></p>
+          <p class="h2">${{ allRefuelExpenses | number: "1.0-0" }} <span class="caption">Total</span></p>
         </div>
         <app-divider></app-divider>
         <div class="buttons">
-          <span>
+          <span [class.selected]="vehicleSelected === -1" (click)="onClickVehicle(-1)">
             <ion-icon slot="start" src="assets/icons/car-side.svg"></ion-icon>
             Todos
           </span>
-          <span>Mazda 3</span>
-          <span>Toyota Fortuner</span>
+          @for (vehicle of vehicles; track $index) {
+            <span [class.selected]="vehicleSelected === vehicle?.id" (click)="onClickVehicle(vehicle?.id)">
+              {{ vehicle?.name }}
+            </span>
+          }
         </div>
       </div>
     </div>
 
-    <div class="detail-container">
+    <!-- <div class="detail-container">
       <div class="title">
         <p class="body-bold">Detalle</p>
       </div>
@@ -38,28 +59,55 @@
         </div>
         <div class="description">
           <p>$485.500</p>
-          <p>$220.000</p>
-          <p>$89.000</p>
-          <p>$42.300</p>
+          <p>$0</p>
+          <p>$0</p>
+          <p>$0</p>
         </div>
       </div>
+    </div> -->
+
+    <app-divider></app-divider>
+
+    <div class="title">
+      <p class="body-bold">Informes de gastos</p>
     </div>
 
-    <div class="chart-container">
-      <div class="title">
-        <p class="body-bold">Tendencia mensual</p>
-        <p class="caption">Últimos 6 meses</p>
+    @if (!isLoading) {
+      <div class="chart-container">
+        <div class="title">
+          <p class="body-bold">Gastos mensuales</p>
+          <p class="caption">Últimos 6 meses</p>
+        </div>
+
+        <apx-chart
+          [series]="chartColumnOptions.series"
+          [chart]="chartColumnOptions.chart"
+          [plotOptions]="chartColumnOptions.plotOptions"
+          [dataLabels]="chartColumnOptions.dataLabels"
+          [xaxis]="chartColumnOptions.xaxis"
+          [yaxis]="chartColumnOptions.yaxis"
+          [title]="chartColumnOptions.title"
+        ></apx-chart>
       </div>
 
-      <apx-chart
-        [series]="chartOptions.series!"
-        [chart]="chartOptions.chart!"
-        [dataLabels]="chartOptions.dataLabels!"
-        [stroke]="chartOptions.stroke!"
-        [title]="chartOptions.title!"
-        [grid]="chartOptions.grid!"
-        [xaxis]="chartOptions.xaxis!"
-      ></apx-chart>
-    </div>
+      <div class="chart-container">
+        <div class="title">
+          <p class="body-bold">Tendencia mensual</p>
+          <p class="caption">Últimos 6 meses</p>
+        </div>
+
+        <apx-chart
+          [series]="chartLineOptions.series"
+          [chart]="chartLineOptions.chart"
+          [dataLabels]="chartLineOptions.dataLabels"
+          [stroke]="chartLineOptions.stroke"
+          [title]="chartLineOptions.title"
+          [grid]="chartLineOptions.grid"
+          [xaxis]="chartLineOptions.xaxis"
+          [yaxis]="chartLineOptions.yaxis"
+          [tooltip]="chartLineOptions.tooltip"
+        ></apx-chart>
+      </div>
+    }
   </div>
 </ion-content>

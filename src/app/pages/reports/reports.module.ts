@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DecimalPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { IonicModule } from '@ionic/angular';
@@ -18,6 +18,7 @@ import { DividerComponent, HeaderComponent } from '@components/index';
     HeaderComponent,
     DividerComponent,
     NgApexchartsModule,
+    DecimalPipe,
   ],
   declarations: [ReportsPage],
 })
