@@ -55,12 +55,14 @@
       <div class="title mb-8" (click)="onClickOpenRefuelsByVehicle()">
         <p class="subtitle-bold flex-2">Historial de recargas</p>
         <p class="subtitle flex-1">{{ refuelsByVehicle?.length }} registros</p>
-        <ion-icon
-          class="icon-arrow-right"
-          slot="end"
-          src="assets/icons/angle-right.svg"
-          [class.rotate]="isOpenRefuelsByVehicle"
-        ></ion-icon>
+        @if (refuelsByVehicle?.length) {
+          <ion-icon
+            class="icon-arrow-right"
+            slot="end"
+            src="assets/icons/angle-right.svg"
+            [class.rotate]="isOpenRefuelsByVehicle"
+          ></ion-icon>
+        }
       </div>
       <!-- <div class="title mb-8" (click)="onClickOpenExpensesByVehicle()">
         <p class="subtitle-bold flex-2">Historial de gastos</p>

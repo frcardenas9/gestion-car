@@ -195,6 +195,10 @@ export class VehiclesCardComponent implements OnInit {
   }
 
   public onClickOpenRefuelsByVehicle() {
+    if (this.refuelsByVehicle.length === 0) {
+      return;
+    }
+
     this.isOpenRefuelsByVehicle = !this.isOpenRefuelsByVehicle;
     if (this.isOpenExpensesByVehicle) {
       this.isOpenExpensesByVehicle = false;
