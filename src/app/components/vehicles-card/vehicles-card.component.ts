@@ -17,6 +17,8 @@ export class VehiclesCardComponent implements OnInit {
   public vehicle = input.required<VehicleModel>();
   public getAllVehicles = output<boolean>();
   public isOpenDetail: boolean = false;
+  public isOpenRefuelsByVehicle: boolean = false;
+  public isOpenExpensesByVehicle: boolean = false;
   public refuelsByVehicle: RefuelModel[] = [];
 
   constructor(
@@ -26,7 +28,7 @@ export class VehiclesCardComponent implements OnInit {
     private readonly refuelService: RefuelService,
   ) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.getRefuelsByVehicle();
   }
 
@@ -190,5 +192,19 @@ export class VehiclesCardComponent implements OnInit {
 
   public onClickOpenDetail() {
     this.isOpenDetail = !this.isOpenDetail;
+  }
+
+  public onClickOpenRefuelsByVehicle() {
+    this.isOpenRefuelsByVehicle = !this.isOpenRefuelsByVehicle;
+    if (this.isOpenExpensesByVehicle) {
+      this.isOpenExpensesByVehicle = false;
+    }
+  }
+
+  public onClickOpenExpensesByVehicle() {
+    this.isOpenExpensesByVehicle = !this.isOpenExpensesByVehicle;
+    if (this.isOpenRefuelsByVehicle) {
+      this.isOpenRefuelsByVehicle = false;
+    }
   }
 }
