@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { ReportsPageRoutingModule } from './reports-routing.module';
 
 import { ReportsPage } from './reports.page';
-import { DividerComponent, HeaderComponent } from '@components/index';
+import { DividerComponent, EmptyStateCardComponent, HeaderComponent } from '@components/index';
 
 @NgModule({
   imports: [
@@ -19,6 +19,7 @@ import { DividerComponent, HeaderComponent } from '@components/index';
     DividerComponent,
     NgApexchartsModule,
     DecimalPipe,
+    EmptyStateCardComponent,
   ],
   declarations: [ReportsPage],
 })
