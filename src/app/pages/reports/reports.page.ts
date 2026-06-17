@@ -1,7 +1,7 @@
 import { DecimalPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { VehicleModel } from '@models/index';
-import { RefuelService, VehiclesService } from '@services/index';
+import { ExpenseService, RefuelService, VehiclesService } from '@services/index';
 
 import {
   ApexAxisChartSeries,
@@ -192,6 +192,7 @@ export class ReportsPage {
     private readonly vehiclesService: VehiclesService,
     private readonly refuelService: RefuelService,
     private readonly decimalPipe: DecimalPipe,
+    private readonly expenseService: ExpenseService,
   ) {}
 
   async ionViewWillEnter() {
@@ -225,6 +226,9 @@ export class ReportsPage {
     this.allRefuelExpenses = 0;
 
     const allRefuels = await this.refuelService.getAll();
+    const allExpenses = await this.expenseService.getAll();
+
+    const totalExpenses: any[] = [...allRefuels, ...allExpenses];
 
     const now = new Date();
 
@@ -244,16 +248,16 @@ export class ReportsPage {
     const oneYearAgo = new Date();
     oneYearAgo.setFullYear(now.getFullYear() - 1);
 
-    const filteredRefuels = allRefuels.filter((refuel) => {
-      const vehicleMatch = this.vehicleSelected === -1 || refuel.vehicleId === this.vehicleSelected;
+    const filteredRefuels = totalExpenses.filter((item) => {
+      const vehicleMatch = this.vehicleSelected === -1 || item.vehicleId === this.vehicleSelected;
 
-      const [yearStr, monthStr, dayStr] = refuel.date.toString().split('-');
+      const [yearStr, monthStr, dayStr] = item.date.toString().split('-');
 
       const year = Number(yearStr);
       const month = Number(monthStr);
       const day = Number(dayStr);
 
-      const refuelDate = new Date(year, month - 1, day);
+      const expenseDate = new Date(year, month - 1, day);
 
       let periodMatch = true;
 
@@ -267,15 +271,15 @@ export class ReportsPage {
           break;
 
         case 'three-months':
-          periodMatch = refuelDate >= threeMonthsAgo && refuelDate <= now;
+          periodMatch = expenseDate >= threeMonthsAgo && expenseDate <= now;
           break;
 
         case 'six-months':
-          periodMatch = refuelDate >= sixMonthsAgo && refuelDate <= now;
+          periodMatch = expenseDate >= sixMonthsAgo && expenseDate <= now;
           break;
 
         case 'last-year':
-          periodMatch = refuelDate >= oneYearAgo && refuelDate <= now;
+          periodMatch = expenseDate >= oneYearAgo && expenseDate <= now;
           break;
 
         case 'all':
@@ -286,11 +290,15 @@ export class ReportsPage {
       return vehicleMatch && periodMatch;
     });
 
-    this.allRefuelExpenses = filteredRefuels.reduce((acc, refuel) => acc + refuel.total, 0);
+    this.allRefuelExpenses = filteredRefuels.reduce((acc, item) => acc + item.total, 0);
   }
 
   private async getRefuelChartData() {
     const allRefuels = await this.refuelService.getAll();
+
+    const allExpenses = await this.expenseService.getAll();
+
+    const totalExpenses: any[] = [...allRefuels, ...allExpenses];
 
     const monthNames = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
 
@@ -309,12 +317,12 @@ export class ReportsPage {
       });
     }
 
-    allRefuels.forEach((refuel) => {
-      if (this.vehicleSelected !== -1 && refuel.vehicleId !== this.vehicleSelected) {
+    totalExpenses.forEach((item) => {
+      if (this.vehicleSelected !== -1 && item.vehicleId !== this.vehicleSelected) {
         return;
       }
 
-      const [yearStr, monthStr] = refuel.date.toString().split('-');
+      const [yearStr, monthStr] = item.date.toString().split('-');
 
       const year = Number(yearStr);
       const month = Number(monthStr);
@@ -322,7 +330,7 @@ export class ReportsPage {
       const monthData = months.find((m: any) => m.year === year && m.month === month);
 
       if (monthData) {
-        monthData.total += refuel.total;
+        monthData.total += item.total;
       }
     });
 
