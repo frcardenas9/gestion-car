@@ -1,9 +1,9 @@
 import { Component, input, OnInit, output } from '@angular/core';
 import { IonButton, IonIcon } from '@ionic/angular/standalone';
 import { DividerComponent } from '@components/divider/divider.component';
-import { RefuelModel, VehicleModel } from '@models/index';
-import { RefuelService, SweetAlertService, VehiclesService } from '@services/index';
-import { CreateEditVehicleFormComponent, RefuelFormComponent } from '@components/index';
+import { ExpenseModel, RefuelModel, VehicleModel } from '@models/index';
+import { ExpenseService, RefuelService, SweetAlertService, VehiclesService } from '@services/index';
+import { CreateEditVehicleFormComponent, ExpenseFormComponent, RefuelFormComponent } from '@components/index';
 import { ModalController } from '@ionic/angular';
 import { DatePipe, DecimalPipe } from '@angular/common';
 
@@ -20,16 +20,19 @@ export class VehiclesCardComponent implements OnInit {
   public isOpenRefuelsByVehicle: boolean = false;
   public isOpenExpensesByVehicle: boolean = false;
   public refuelsByVehicle: RefuelModel[] = [];
+  public expensesByVehicle: ExpenseModel[] = [];
 
   constructor(
     private readonly sweetAlertService: SweetAlertService,
     private readonly vehiclesService: VehiclesService,
     private readonly modalController: ModalController,
     private readonly refuelService: RefuelService,
+    private readonly expenseService: ExpenseService,
   ) {}
 
   ngOnInit() {
     this.getRefuelsByVehicle();
+    this.getExpensesByVehicle();
   }
 
   public onClickDeleteVehicle() {
@@ -135,6 +138,66 @@ export class VehiclesCardComponent implements OnInit {
       });
   }
 
+  public async onClickCreateExpenseVehicle() {
+    const modal = await this.modalController.create({
+      component: ExpenseFormComponent,
+      componentProps: {
+        vehicle: this.vehicle(),
+      },
+    });
+
+    modal.present();
+
+    const { data } = await modal.onWillDismiss();
+
+    if (data?.refresh) {
+      this.getExpensesByVehicle();
+    }
+  }
+
+  public async onClickEditExpenseVehicle(item: ExpenseModel) {
+    const modal = await this.modalController.create({
+      component: ExpenseFormComponent,
+      componentProps: {
+        vehicle: this.vehicle(),
+        expense: item,
+      },
+    });
+
+    modal.present();
+
+    const { data } = await modal.onWillDismiss();
+
+    if (data?.refresh) {
+      this.getExpensesByVehicle();
+    }
+  }
+
+  public onClickDeleteExpenseVehicle(item: ExpenseModel) {
+    this.sweetAlertService
+      .confirm({
+        title: '¿Estás seguro?',
+        text: 'Esta acción no se puede deshacer',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: '¡Sí, eliminarlo!',
+        cancelButtonText: 'Cancelar',
+      })
+      .then(async (result) => {
+        if (result.isConfirmed) {
+          await this.expenseService.delete(item.id);
+
+          this.getExpensesByVehicle();
+
+          this.sweetAlertService.show({
+            title: '¡Eliminado!',
+            text: 'El registro ha sido eliminado.',
+            icon: 'success',
+          });
+        }
+      });
+  }
+
   public getRefuelsByVehicle() {
     this.refuelService.getAll().then((x) => {
       this.refuelsByVehicle = x.filter((y) => y.vehicleId === this.vehicle()?.id);
@@ -143,6 +206,16 @@ export class VehiclesCardComponent implements OnInit {
         .sort((a, b) => b.odometer - a.odometer);
       this.calculatePerformance(this.refuelsByVehicle);
       console.table(this.refuelsByVehicle);
+    });
+  }
+
+  public getExpensesByVehicle() {
+    this.expenseService.getAll().then((x) => {
+      this.expensesByVehicle = x.filter((y) => y.vehicleId === this.vehicle()?.id);
+      this.expensesByVehicle
+        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+        .sort((a, b) => b.odometer - a.odometer);
+      console.table(this.expensesByVehicle);
     });
   }
 
@@ -206,6 +279,10 @@ export class VehiclesCardComponent implements OnInit {
   }
 
   public onClickOpenExpensesByVehicle() {
+    if (this.expensesByVehicle.length === 0) {
+      return;
+    }
+
     this.isOpenExpensesByVehicle = !this.isOpenExpensesByVehicle;
     if (this.isOpenRefuelsByVehicle) {
       this.isOpenRefuelsByVehicle = false;

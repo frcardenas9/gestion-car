@@ -1,0 +1,78 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="onClickBackButton()">
+        <ion-icon color="secondary" slot="icon-only" src="assets/icons/angle-left.svg"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    @if (isEditMode) {
+      <ion-title>Gestión de gastos</ion-title>
+    } @else {
+      <ion-title>Gestión de gastos</ion-title>
+    }
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="container">
+  <div class="main-container">
+    <div class="title">
+      @if (isEditMode) {
+        <p class="body-bold">Editar gasto - {{ vehicle()?.name }}</p>
+      } @else {
+        <p class="body-bold">Registrar gasto - {{ vehicle()?.name }}</p>
+      }
+    </div>
+    <form class="form" [formGroup]="form" (ngSubmit)="onClickSaveExpense()">
+      <ion-select
+        label="Selecciona el tipo de gasto"
+        labelPlacement="floating"
+        fill="outline"
+        okText="Aceptar"
+        cancelText="Cancelar"
+        interface="action-sheet"
+        formControlName="expenseType"
+      >
+        <ion-select-option value="Mantenimiento">Mantenimiento</ion-select-option>
+        <ion-select-option value="Seguros">Seguros</ion-select-option>
+        <ion-select-option value="Otros">Otros</ion-select-option>
+      </ion-select>
+
+      <ion-input
+        label="Fecha"
+        labelPlacement="floating"
+        fill="outline"
+        placeholder="Fecha"
+        formControlName="date"
+        type="date"
+      >
+      </ion-input>
+
+      <ion-input
+        label="Odómetro"
+        labelPlacement="floating"
+        fill="outline"
+        placeholder="Odómetro"
+        formControlName="odometer"
+        type="number"
+        inputmode="numeric"
+      >
+      </ion-input>
+
+      <ion-input
+        label="Total"
+        labelPlacement="floating"
+        fill="outline"
+        placeholder="Total"
+        formControlName="total"
+        type="number"
+        inputmode="numeric"
+      >
+      </ion-input>
+
+      <ion-button type="submit" [disabled]="form.invalid">
+        <ion-icon slot="start" src="assets/icons/paid.svg"></ion-icon>
+        Guardar
+      </ion-button>
+    </form>
+  </div>
+</ion-content>

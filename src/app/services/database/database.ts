@@ -13,6 +13,7 @@ export class DatabaseService extends Dexie {
       vehicles: '++id, type, name, brand, model, year, plate, capacity',
       alerts: '++id, name, date',
       refuels: '++id, date, odometer, price, total, fuelAmount, isFilling, vehicleId',
+      expenses: '++id, expenseType, date, odometer, total, vehicleId',
     });
   }
 

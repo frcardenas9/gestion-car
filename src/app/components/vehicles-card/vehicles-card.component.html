@@ -43,16 +43,16 @@
         <ion-icon slot="start" src="assets/icons/gas-pump-alt.svg"></ion-icon>
         <p>Recarga</p>
       </ion-button>
-      <!-- <ion-button class="grey" size="small" (click)="onClickCreateRefuelVehicle()">
+      <ion-button class="grey" size="small" (click)="onClickCreateExpenseVehicle()">
         <ion-icon slot="start" src="assets/icons/paid.svg"></ion-icon>
         <p>Gasto</p>
-      </ion-button> -->
+      </ion-button>
     </div>
 
     <app-divider></app-divider>
 
     <div class="refuel-expenses-history-container">
-      <div class="title mb-8" (click)="onClickOpenRefuelsByVehicle()">
+      <div class="title mb-8" [class.open-history]="isOpenRefuelsByVehicle" (click)="onClickOpenRefuelsByVehicle()">
         <p class="subtitle-bold flex-2">Historial de recargas</p>
         <p class="subtitle flex-1">{{ refuelsByVehicle?.length }} registros</p>
         @if (refuelsByVehicle?.length) {
@@ -64,16 +64,18 @@
           ></ion-icon>
         }
       </div>
-      <!-- <div class="title mb-8" (click)="onClickOpenExpensesByVehicle()">
+      <div class="title mb-8" [class.open-history]="isOpenExpensesByVehicle" (click)="onClickOpenExpensesByVehicle()">
         <p class="subtitle-bold flex-2">Historial de gastos</p>
-        <p class="subtitle flex-1">{{ refuelsByVehicle?.length }} registros</p>
-        <ion-icon
-          class="icon-arrow-right"
-          slot="end"
-          src="assets/icons/angle-right.svg"
-          [class.rotate]="isOpenExpensesByVehicle"
-        ></ion-icon>
-      </div> -->
+        <p class="subtitle flex-1">{{ expensesByVehicle?.length }} registros</p>
+        @if (expensesByVehicle?.length) {
+          <ion-icon
+            class="icon-arrow-right"
+            slot="end"
+            src="assets/icons/angle-right.svg"
+            [class.rotate]="isOpenExpensesByVehicle"
+          ></ion-icon>
+        }
+      </div>
       <div class="content-refuels" [class.open]="isOpenRefuelsByVehicle">
         @for (item of refuelsByVehicle; track $index) {
           <div class="detail">
@@ -116,7 +118,7 @@
         </div>
       </div>
       <div class="content-expenses" [class.open]="isOpenExpensesByVehicle">
-        @for (item of refuelsByVehicle; track $index) {
+        @for (item of expensesByVehicle; track $index) {
           <div class="detail">
             <div class="title">
               <p class="subtitle">{{ item?.date | date: "dd/MM/yyyy" }}</p>
@@ -124,16 +126,16 @@
             </div>
             <div class="value">
               <div class="item-value">
-                <p class="subtitle">Galones</p>
-                <p class="subtitle-bold">{{ item?.fuelAmount | number: "1.1-2" }}</p>
+                <p class="subtitle">Tipo</p>
+                <p class="subtitle-bold">{{ item?.expenseType }}</p>
               </div>
               <div class="item-value">
                 <p class="subtitle">Odómetro</p>
                 <p class="subtitle-bold">{{ item?.odometer | number: "1.0-0" }}</p>
               </div>
               <div class="item-value">
-                <p class="subtitle">Rendimiento</p>
-                <p class="subtitle-bold">{{ item.performance ? (item.performance | number: "1.1-2") : "-" }} km/gl</p>
+                <p class="subtitle">Total</p>
+                <p class="subtitle-bold">${{ item?.total | number: "1.0-0" }}</p>
               </div>
             </div>
             <div class="buttons">
@@ -141,13 +143,13 @@
                 slot="icon-only"
                 class="button-icon"
                 src="assets/icons/pencil.svg"
-                (click)="onClickEditRefuelVehicle(item)"
+                (click)="onClickEditExpenseVehicle(item)"
               ></ion-icon>
               <ion-icon
                 slot="icon-only"
                 class="button-icon"
                 src="assets/icons/trash.svg"
-                (click)="onClickDeleteRefuelVehicle(item)"
+                (click)="onClickDeleteExpenseVehicle(item)"
               ></ion-icon>
             </div>
           </div>
