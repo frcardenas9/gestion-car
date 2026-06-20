@@ -13,8 +13,8 @@ import {
   IonSelect,
   IonSelectOption,
 } from '@ionic/angular/standalone';
-import { VehicleModel } from '@models/index';
-import { SweetAlertService, VehiclesService } from '@services/index';
+import { BrandModel, VehicleModel } from '@models/index';
+import { BrandsService, SweetAlertService, VehiclesService } from '@services/index';
 
 @Component({
   selector: 'app-create-edit-vehicle-form',
@@ -37,6 +37,7 @@ import { SweetAlertService, VehiclesService } from '@services/index';
 export class CreateEditVehicleFormComponent implements OnInit {
   public vehicle = input<VehicleModel>();
   public isEditMode: boolean = false;
+  public brands: BrandModel[] = [];
 
   public form: FormGroup = new FormGroup({
     type: new FormControl('', [Validators.required]),
@@ -52,6 +53,7 @@ export class CreateEditVehicleFormComponent implements OnInit {
     private readonly modalController: ModalController,
     private readonly vehiclesService: VehiclesService,
     private readonly sweetAlertService: SweetAlertService,
+    private readonly brandsService: BrandsService,
   ) {}
 
   ngOnInit() {
@@ -59,6 +61,7 @@ export class CreateEditVehicleFormComponent implements OnInit {
       this.form.patchValue(this.vehicle());
       this.isEditMode = true;
     }
+    this.getAllBrands();
   }
 
   public onClickBackButton(refresh?: boolean) {
@@ -86,5 +89,9 @@ export class CreateEditVehicleFormComponent implements OnInit {
         : 'El vehículo ha sido creado exitosamente.',
       icon: 'success',
     });
+  }
+
+  private async getAllBrands() {
+    this.brands = await this.brandsService.getAll();
   }
 }
