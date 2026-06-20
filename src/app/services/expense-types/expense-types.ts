@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
-import { VehicleTypeModel } from '@models/index';
+import { ExpenseTypeModel } from '@models/index';
 import { BaseRepository } from '@services/base-repository/base-repository';
 import { DatabaseService } from '@services/index';
 
 @Injectable({
   providedIn: 'root',
 })
-export class VehicleTypesService extends BaseRepository<VehicleTypeModel> {
+export class ExpenseTypesService extends BaseRepository<ExpenseTypeModel> {
   constructor(private readonly databaseService: DatabaseService) {
-    super(databaseService, 'vehicleTypes');
+    super(databaseService, 'expenseTypes');
   }
 
-  public async seedVehicleTypes() {
-    await this.databaseService.seedVehicleTypes();
+  public async seedExpenseTypes() {
+    await this.databaseService.seedExpenseTypes();
   }
 }

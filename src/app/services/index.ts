@@ -6,3 +6,5 @@ export { RefuelService } from './refuel/refuel';
 export { ExpenseService } from './expense/expense';
 export { BrandsService } from './brands/brands';
 export { VehicleTypesService } from './vehicle-types/vehicle-types';
+export { ExpenseTypesService } from './expense-types/expense-types';
+export { SeedDatabaseService } from './seed-database/seed-database';

@@ -11,7 +11,7 @@ export class BrandsService extends BaseRepository<BrandModel> {
     super(databaseService, 'brands');
   }
 
-  async seedBrands() {
+  public async seedBrands() {
     await this.databaseService.seedBrands();
   }
 }

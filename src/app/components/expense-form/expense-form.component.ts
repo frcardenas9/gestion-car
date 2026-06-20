@@ -13,8 +13,8 @@ import {
   IonSelect,
   IonSelectOption,
 } from '@ionic/angular/standalone';
-import { ExpenseModel, RefuelModel, VehicleModel } from '@models/index';
-import { ExpenseService, RefuelService, SweetAlertService } from '@services/index';
+import { ExpenseModel, ExpenseTypeModel, VehicleModel } from '@models/index';
+import { ExpenseService, ExpenseTypesService, RefuelService, SweetAlertService } from '@services/index';
 
 @Component({
   selector: 'app-expense-form',
@@ -47,6 +47,7 @@ export class ExpenseFormComponent implements OnInit {
 
     return `${year}-${month}-${day}`;
   })();
+  public expenseTypes: ExpenseTypeModel[] = [];
 
   public form: FormGroup = new FormGroup({
     expenseType: new FormControl('', [Validators.required]),
@@ -59,13 +60,15 @@ export class ExpenseFormComponent implements OnInit {
     private readonly modalController: ModalController,
     private readonly expenseService: ExpenseService,
     private readonly sweetAlertService: SweetAlertService,
+    private readonly expenseTypesService: ExpenseTypesService,
   ) {}
 
-  ngOnInit() {
+  async ngOnInit() {
     if (this.expense()) {
       this.form.patchValue(this.expense());
       this.isEditMode = true;
     }
+    await this.getAllExpenseTypes();
   }
 
   public onClickBackButton(refresh?: boolean) {
@@ -96,5 +99,9 @@ export class ExpenseFormComponent implements OnInit {
         : 'El registro ha sido creado exitosamente.',
       icon: 'success',
     });
+  }
+
+  public async getAllExpenseTypes() {
+    this.expenseTypes = await this.expenseTypesService.getAll();
   }
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BrandsService, VehicleTypesService } from '@services/index';
+import { SeedDatabaseService } from '@services/index';
 
 @Component({
   selector: 'app-root',
@@ -8,11 +8,7 @@ import { BrandsService, VehicleTypesService } from '@services/index';
   standalone: false,
 })
 export class AppComponent {
-  constructor(
-    private readonly brandsService: BrandsService,
-    private readonly vehicleTypesService: VehicleTypesService,
-  ) {
-    this.brandsService.seedBrands();
-    this.vehicleTypesService.seedVehicleTypes();
+  constructor(private readonly seedDatabaseService: SeedDatabaseService) {
+    this.seedDatabaseService.seedDatabase();
   }
 }

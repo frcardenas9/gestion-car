@@ -3,6 +3,7 @@ import Dexie, { Table } from 'dexie';
 
 import brands from '../../../assets/json/brands.json';
 import vehicleTypes from '../../../assets/json/vehicleTypes.json';
+import expenseTypes from '../../../assets/json/expenseTypes.json';
 
 @Injectable({
   providedIn: 'root',
@@ -18,6 +19,7 @@ export class DatabaseService extends Dexie {
       expenses: '++id, expenseType, date, odometer, total, vehicleId',
       brands: '++id, name',
       vehicleTypes: '++id, name',
+      expenseTypes: '++id, name',
     });
   }
 
@@ -25,7 +27,7 @@ export class DatabaseService extends Dexie {
     return this.table(tableName);
   }
 
-  async seedBrands() {
+  public async seedBrands() {
     const count = await this.table('brands').count();
 
     if (count === 0) {
@@ -33,11 +35,19 @@ export class DatabaseService extends Dexie {
     }
   }
 
-  async seedVehicleTypes() {
+  public async seedVehicleTypes() {
     const count = await this.table('vehicleTypes').count();
 
     if (count === 0) {
       await this.table('vehicleTypes').bulkAdd(vehicleTypes);
+    }
+  }
+
+  public async seedExpenseTypes() {
+    const count = await this.table('expenseTypes').count();
+
+    if (count === 0) {
+      await this.table('expenseTypes').bulkAdd(expenseTypes);
     }
   }
 }

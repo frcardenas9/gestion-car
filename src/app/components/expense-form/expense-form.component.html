@@ -32,9 +32,9 @@
         interface="action-sheet"
         formControlName="expenseType"
       >
-        <ion-select-option value="Mantenimiento">Mantenimiento</ion-select-option>
-        <ion-select-option value="Seguros">Seguros</ion-select-option>
-        <ion-select-option value="Otros">Otros</ion-select-option>
+        @for (item of expenseTypes; track $index) {
+          <ion-select-option [value]="item?.name">{{ item?.name }}</ion-select-option>
+        }
       </ion-select>
 
       <ion-input
