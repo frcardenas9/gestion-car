@@ -32,11 +32,9 @@
         interface="modal"
         formControlName="type"
       >
-        <ion-select-option value="carro">Carro</ion-select-option>
-        <ion-select-option value="moto">Moto</ion-select-option>
-        <ion-select-option value="bus">Bus</ion-select-option>
-        <ion-select-option value="camion">Camión</ion-select-option>
-        <ion-select-option value="otro">Otro</ion-select-option>
+        @for (item of vehicleTypes; track $index) {
+          <ion-select-option [value]="item?.name">{{ item?.name }}</ion-select-option>
+        }
       </ion-select>
 
       <ion-input

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { BrandsComponent } from '@components/index';
+import { BrandsComponent, VehicleTypesComponent } from '@components/index';
 import { ModalController, PopoverController } from '@ionic/angular';
 import { IonIcon } from '@ionic/angular/standalone';
 
@@ -25,6 +25,14 @@ export class OptionsListComponent {
   public async onClickOpenBrandsModal() {
     const modal = await this.modalController.create({
       component: BrandsComponent,
+    });
+
+    modal.present();
+  }
+
+  public async onClickOpenVehicleTypesModal() {
+    const modal = await this.modalController.create({
+      component: VehicleTypesComponent,
     });
 
     modal.present();

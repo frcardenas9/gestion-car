@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import Dexie, { Table } from 'dexie';
+
 import brands from '../../../assets/json/brands.json';
+import vehicleTypes from '../../../assets/json/vehicleTypes.json';
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +17,7 @@ export class DatabaseService extends Dexie {
       refuels: '++id, date, odometer, price, total, fuelAmount, isFilling, vehicleId',
       expenses: '++id, expenseType, date, odometer, total, vehicleId',
       brands: '++id, name',
+      vehicleTypes: '++id, name',
     });
   }
 
@@ -27,6 +30,14 @@ export class DatabaseService extends Dexie {
 
     if (count === 0) {
       await this.table('brands').bulkAdd(brands);
+    }
+  }
+
+  async seedVehicleTypes() {
+    const count = await this.table('vehicleTypes').count();
+
+    if (count === 0) {
+      await this.table('vehicleTypes').bulkAdd(vehicleTypes);
     }
   }
 }

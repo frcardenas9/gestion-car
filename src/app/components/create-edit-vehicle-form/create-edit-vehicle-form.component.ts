@@ -13,8 +13,8 @@ import {
   IonSelect,
   IonSelectOption,
 } from '@ionic/angular/standalone';
-import { BrandModel, VehicleModel } from '@models/index';
-import { BrandsService, SweetAlertService, VehiclesService } from '@services/index';
+import { BrandModel, VehicleModel, VehicleTypeModel } from '@models/index';
+import { BrandsService, SweetAlertService, VehiclesService, VehicleTypesService } from '@services/index';
 
 @Component({
   selector: 'app-create-edit-vehicle-form',
@@ -38,6 +38,7 @@ export class CreateEditVehicleFormComponent implements OnInit {
   public vehicle = input<VehicleModel>();
   public isEditMode: boolean = false;
   public brands: BrandModel[] = [];
+  public vehicleTypes: VehicleTypeModel[] = [];
 
   public form: FormGroup = new FormGroup({
     type: new FormControl('', [Validators.required]),
@@ -54,6 +55,7 @@ export class CreateEditVehicleFormComponent implements OnInit {
     private readonly vehiclesService: VehiclesService,
     private readonly sweetAlertService: SweetAlertService,
     private readonly brandsService: BrandsService,
+    private readonly vehicleTypesService: VehicleTypesService,
   ) {}
 
   ngOnInit() {
@@ -62,6 +64,7 @@ export class CreateEditVehicleFormComponent implements OnInit {
       this.isEditMode = true;
     }
     this.getAllBrands();
+    this.getAllVehicleTypes();
   }
 
   public onClickBackButton(refresh?: boolean) {
@@ -93,5 +96,9 @@ export class CreateEditVehicleFormComponent implements OnInit {
 
   private async getAllBrands() {
     this.brands = await this.brandsService.getAll();
+  }
+
+  private async getAllVehicleTypes() {
+    this.vehicleTypes = await this.vehicleTypesService.getAll();
   }
 }

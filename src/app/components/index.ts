@@ -15,3 +15,5 @@ export { RefuelFormComponent } from './refuel-form/refuel-form.component';
 export { ExpenseFormComponent } from './expense-form/expense-form.component';
 export { BrandsComponent } from './brands/brands.component';
 export { CreateEditBrandFormComponent } from './create-edit-brand-form/create-edit-brand-form.component';
+export { VehicleTypesComponent } from './vehicle-types/vehicle-types.component';
+export { CreateEditVehicleTypeFormComponent } from './create-edit-vehicle-type-form/create-edit-vehicle-type-form.component';

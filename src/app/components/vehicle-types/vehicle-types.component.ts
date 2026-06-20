@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EmptyStateCardComponent, CreateEditBrandFormComponent } from '@components/index';
+import { EmptyStateCardComponent, CreateEditVehicleTypeFormComponent } from '@components/index';
 import { ModalController } from '@ionic/angular';
 import {
   IonContent,
@@ -11,13 +11,13 @@ import {
   IonToolbar,
   IonButtons,
 } from '@ionic/angular/standalone';
-import { BrandModel } from '@models/index';
-import { BrandsService, SweetAlertService } from '@services/index';
+import { VehicleTypeModel } from '@models/index';
+import { SweetAlertService, VehicleTypesService } from '@services/index';
 
 @Component({
-  selector: 'app-brands',
-  templateUrl: './brands.component.html',
-  styleUrls: ['./brands.component.scss'],
+  selector: 'app-vehicle-types',
+  templateUrl: './vehicle-types.component.html',
+  styleUrls: ['./vehicle-types.component.scss'],
   imports: [
     IonButtons,
     IonToolbar,
@@ -30,11 +30,11 @@ import { BrandsService, SweetAlertService } from '@services/index';
     EmptyStateCardComponent,
   ],
 })
-export class BrandsComponent implements OnInit {
-  public brands: BrandModel[] = [];
+export class VehicleTypesComponent implements OnInit {
+  public vehicleTypes: VehicleTypeModel[] = [];
 
   constructor(
-    private readonly brandsService: BrandsService,
+    private readonly vehicleTypesService: VehicleTypesService,
     private readonly modalController: ModalController,
     private readonly sweetAlertService: SweetAlertService,
   ) {}
@@ -44,13 +44,13 @@ export class BrandsComponent implements OnInit {
   }
 
   public async getAll() {
-    this.brands = await this.brandsService.getAll();
-    console.table(this.brands);
+    this.vehicleTypes = await this.vehicleTypesService.getAll();
+    console.table(this.vehicleTypes);
   }
 
   public async onClickCreate() {
     const modal = await this.modalController.create({
-      component: CreateEditBrandFormComponent,
+      component: CreateEditVehicleTypeFormComponent,
     });
 
     modal.present();
@@ -62,7 +62,7 @@ export class BrandsComponent implements OnInit {
     }
   }
 
-  public onClickDelete(brand: BrandModel) {
+  public onClickDelete(vehicleType: VehicleTypeModel) {
     this.sweetAlertService
       .confirm({
         title: '¿Estás seguro?',
@@ -74,7 +74,7 @@ export class BrandsComponent implements OnInit {
       })
       .then(async (result) => {
         if (result.isConfirmed) {
-          await this.brandsService.delete(brand.id);
+          await this.vehicleTypesService.delete(vehicleType.id);
 
           this.getAll();
 
@@ -87,11 +87,11 @@ export class BrandsComponent implements OnInit {
       });
   }
 
-  public async onClickEdit(brand: BrandModel) {
+  public async onClickEdit(vehicleType: VehicleTypeModel) {
     const modal = await this.modalController.create({
-      component: CreateEditBrandFormComponent,
+      component: CreateEditVehicleTypeFormComponent,
       componentProps: {
-        brand,
+        vehicleType,
       },
     });
 

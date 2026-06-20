@@ -1,0 +1,7 @@
+[
+  { "id": 1, "name": "Carro" },
+  { "id": 2, "name": "Moto" },
+  { "id": 3, "name": "Bus" },
+  { "id": 4, "name": "Camión" },
+  { "id": 5, "name": "Otro" }
+]

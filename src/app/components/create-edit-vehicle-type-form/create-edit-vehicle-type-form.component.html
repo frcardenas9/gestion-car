@@ -1,0 +1,41 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="onClickBackButton()">
+        <ion-icon color="secondary" slot="icon-only" src="assets/icons/angle-left.svg"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    @if (isEditMode) {
+      <ion-title>Editar tipo de vehículo</ion-title>
+    } @else {
+      <ion-title>Crear tipo de vehículo</ion-title>
+    }
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="container">
+  <div class="main-container">
+    <div class="title">
+      @if (isEditMode) {
+        <p class="body-bold">Editar tipo de vehículo</p>
+      } @else {
+        <p class="body-bold">Registrar tipo de vehículo</p>
+      }
+    </div>
+    <form class="form" [formGroup]="form" (ngSubmit)="onClickSave()">
+      <ion-input
+        label="Tipo de vehículo"
+        labelPlacement="floating"
+        fill="outline"
+        placeholder="Nombre"
+        formControlName="name"
+      >
+      </ion-input>
+
+      <ion-button type="submit" [disabled]="form.invalid">
+        <ion-icon slot="start" src="assets/icons/disk.svg"></ion-icon>
+        Guardar
+      </ion-button>
+    </form>
+  </div>
+</ion-content>

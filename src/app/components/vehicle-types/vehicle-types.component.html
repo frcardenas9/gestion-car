@@ -1,0 +1,59 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="onClickBackButton()">
+        <ion-icon color="secondary" slot="icon-only" src="assets/icons/angle-left.svg"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Tipos de vehículos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="container">
+  <div class="main-container">
+    <div class="title">
+      <ion-label class="body-bold">Tipos de vehículos</ion-label>
+
+      <ion-button (click)="onClickCreate()">
+        <ion-icon slot="start" name="add"></ion-icon>
+        Agregar
+      </ion-button>
+    </div>
+
+    @if (vehicleTypes.length) {
+      @for (item of vehicleTypes; track $index) {
+        <div class="item">
+          <div class="item-content">
+            <div>
+              {{ $index + 1 }}
+            </div>
+
+            <div class="content">
+              <p class="body-bold">{{ item?.name }}</p>
+            </div>
+
+            <div class="buttons">
+              <ion-icon
+                class="button-icon"
+                slot="icon-only"
+                src="assets/icons/pencil.svg"
+                (click)="onClickEdit(item)"
+              ></ion-icon>
+              <ion-icon
+                class="button-icon"
+                slot="icon-only"
+                src="assets/icons/trash.svg"
+                (click)="onClickDelete(item)"
+              ></ion-icon>
+            </div>
+          </div>
+        </div>
+      }
+    } @else {
+      <app-empty-state-card
+        title="Bievenido a GestionCar"
+        description="Aquí puedes gestionar los tipos de vehículos"
+      ></app-empty-state-card>
+    }
+  </div>
+</ion-content>
