@@ -1,14 +1,14 @@
 <div class="options-list-container p-16">
-  <div class="item p-8">
-    <ion-icon color="primary" src="assets/icons/gas-pump.svg"></ion-icon>
-    <p class="subtitle">Registrar recarga</p>
+  <div class="item p-8" (click)="onClickAddAlert()">
+    <ion-icon color="warning" src="assets/icons/bell.svg"></ion-icon>
+    <p class="subtitle">Crear alerta</p>
+  </div>
+  <div class="item p-8" (click)="onClickOpenBrandsModal()">
+    <ion-icon color="primary" src="assets/icons/car-alt.svg"></ion-icon>
+    <p class="subtitle">Gestionar marcas</p>
   </div>
   <div class="item p-8">
     <ion-icon color="danger" src="assets/icons/paid.svg"></ion-icon>
-    <p class="subtitle">Registrar gasto</p>
-  </div>
-  <div class="item p-8">
-    <ion-icon color="warning" src="assets/icons/bell.svg"></ion-icon>
-    <p class="subtitle">Crear alerta</p>
+    <p class="subtitle">Gestionar tipos de vehículos</p>
   </div>
 </div>

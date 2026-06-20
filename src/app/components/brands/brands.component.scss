@@ -1,0 +1,55 @@
+.main-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  .title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .item {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--ion-color-primary);
+    border-radius: 12px;
+    padding: 16px;
+    background-color: var(--ion-color-white);
+    box-shadow: var(--shadow);
+
+    .item-content {
+      display: flex;
+      gap: 16px;
+
+      .content {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .buttons {
+        display: flex;
+        gap: 16px;
+
+        ion-icon {
+          height: 24px;
+          width: 24px;
+          cursor: pointer;
+        }
+
+        :nth-child(1 of .button-icon) {
+          color: var(--ion-color-tertiary);
+        }
+
+        :nth-child(2 of .button-icon) {
+          color: var(--ion-color-danger);
+        }
+      }
+    }
+
+    .item-content :nth-child(2) {
+      flex-grow: 1;
+    }
+  }
+}

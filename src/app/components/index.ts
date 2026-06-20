@@ -13,3 +13,5 @@ export { AlertsCardComponent } from './alerts-card/alerts-card.component';
 export { CreateEditVehicleFormComponent } from './create-edit-vehicle-form/create-edit-vehicle-form.component';
 export { RefuelFormComponent } from './refuel-form/refuel-form.component';
 export { ExpenseFormComponent } from './expense-form/expense-form.component';
+export { BrandsComponent } from './brands/brands.component';
+export { CreateEditBrandFormComponent } from './create-edit-brand-form/create-edit-brand-form.component';

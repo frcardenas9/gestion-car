@@ -1,0 +1,41 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="onClickBackButton()">
+        <ion-icon color="secondary" slot="icon-only" src="assets/icons/angle-left.svg"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    @if (isEditMode) {
+      <ion-title>Editar marca</ion-title>
+    } @else {
+      <ion-title>Crear marca</ion-title>
+    }
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="container">
+  <div class="main-container">
+    <div class="title">
+      @if (isEditMode) {
+        <p class="body-bold">Editar marca</p>
+      } @else {
+        <p class="body-bold">Registrar marca</p>
+      }
+    </div>
+    <form class="form" [formGroup]="form" (ngSubmit)="onClickSave()">
+      <ion-input
+        label="Nombre de la marca"
+        labelPlacement="floating"
+        fill="outline"
+        placeholder="Nombre"
+        formControlName="name"
+      >
+      </ion-input>
+
+      <ion-button type="submit" [disabled]="form.invalid">
+        <ion-icon slot="start" src="assets/icons/disk.svg"></ion-icon>
+        Guardar
+      </ion-button>
+    </form>
+  </div>
+</ion-content>

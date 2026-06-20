@@ -29,7 +29,9 @@
     "lib": ["es2018", "dom"],
     "skipLibCheck": true,
     "useDefineForClassFields": false,
-    "strictNullChecks": false
+    "strictNullChecks": false,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

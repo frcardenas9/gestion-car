@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { BrandsComponent } from '@components/index';
+import { ModalController, PopoverController } from '@ionic/angular';
 import { IonIcon } from '@ionic/angular/standalone';
 
 @Component({
@@ -7,8 +10,23 @@ import { IonIcon } from '@ionic/angular/standalone';
   styleUrls: ['./options-list.component.scss'],
   imports: [IonIcon],
 })
-export class OptionsListComponent implements OnInit {
-  constructor() {}
+export class OptionsListComponent {
+  constructor(
+    private readonly router: Router,
+    private readonly popoverController: PopoverController,
+    private readonly modalController: ModalController,
+  ) {}
 
-  ngOnInit() {}
+  public onClickAddAlert() {
+    this.router.navigate(['/tabs/alerts']);
+    this.popoverController.dismiss();
+  }
+
+  public async onClickOpenBrandsModal() {
+    const modal = await this.modalController.create({
+      component: BrandsComponent,
+    });
+
+    modal.present();
+  }
 }
