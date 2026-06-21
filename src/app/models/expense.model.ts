@@ -1,6 +1,7 @@
 export interface ExpenseModel {
   id?: number;
   expenseType?: string;
+  description?: string;
   date?: string;
   odometer?: number;
   total?: number;

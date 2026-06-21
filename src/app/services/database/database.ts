@@ -16,7 +16,7 @@ export class DatabaseService extends Dexie {
       vehicles: '++id, type, name, brand, model, year, plate, capacity',
       alerts: '++id, name, date',
       refuels: '++id, date, odometer, price, total, fuelAmount, isFilling, vehicleId',
-      expenses: '++id, expenseType, date, odometer, total, vehicleId',
+      expenses: '++id, expenseType, description, date, odometer, total, vehicleId',
       brands: '++id, name',
       vehicleTypes: '++id, name',
       expenseTypes: '++id, name',

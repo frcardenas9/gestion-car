@@ -51,6 +51,7 @@ export class ExpenseFormComponent implements OnInit {
 
   public form: FormGroup = new FormGroup({
     expenseType: new FormControl('', [Validators.required]),
+    description: new FormControl('', [Validators.required]),
     date: new FormControl(this.currentDate, [Validators.required]),
     odometer: new FormControl('', [Validators.required]),
     total: new FormControl('', [Validators.required]),
