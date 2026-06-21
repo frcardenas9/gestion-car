@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AlertModel, ExpenseModel, ExpensesSummary, RefuelModel } from '@models/index';
+import { AlertModel, ExpenseModel, ExpensesSummary, RefuelModel, VehicleModel } from '@models/index';
 import { AlertsService, DashboardService, ExpenseService, RefuelService, VehiclesService } from '@services/index';
 
 @Component({
@@ -14,6 +14,7 @@ export class HomePage {
   public firstMonth: string;
   public alerts: AlertModel[] = [];
   public recentMovements: (RefuelModel | ExpenseModel)[] = [];
+  public vehicles: VehicleModel[] = [];
 
   constructor(
     private readonly dashboardService: DashboardService,
@@ -30,6 +31,7 @@ export class HomePage {
     this.getFirstMonth();
     this.getAllAlerts();
     this.getRecentMovements();
+    this.getAllVehicles();
   }
 
   private getCurrentMonth() {
@@ -109,7 +111,7 @@ export class HomePage {
     this.recentMovements = all;
   }
 
-  public dateFormatted(dateOriginal: string) {
+  private dateFormatted(dateOriginal: string) {
     const [year, month, day] = dateOriginal.split('-').map(Number);
 
     const date = new Date(year, month - 1, day);
@@ -117,5 +119,9 @@ export class HomePage {
     const dateFormatted = date.toLocaleDateString('es-CO');
 
     return dateFormatted;
+  }
+
+  private async getAllVehicles() {
+    this.vehicles = await this.vehiclesService.getAll();
   }
 }

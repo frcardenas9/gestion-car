@@ -13,6 +13,7 @@ import {
   ExpensesCardComponent,
   UpcomingAlertsCardComponent,
   RecentActivityCardComponent,
+  EmptyStateCardComponent,
 } from '@components/index';
 
 @NgModule({
@@ -26,6 +27,7 @@ import {
     ExpensesCardComponent,
     UpcomingAlertsCardComponent,
     RecentActivityCardComponent,
+    EmptyStateCardComponent,
   ],
   declarations: [HomePage],
 })

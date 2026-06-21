@@ -2,6 +2,13 @@
 
 <ion-content class="container">
   <div class="main-container">
+    @if (!vehicles?.length) {
+      <app-empty-state-card
+        title="Bievenido a GestionCar"
+        description="Empieza ahora registrando tu primer vehículo"
+      ></app-empty-state-card>
+    }
+
     <app-summary-card
       [currentMonth]="currentMonth"
       [summary]="{
