@@ -47,7 +47,6 @@ export class VehicleTypesComponent implements OnInit {
 
   public async getAll() {
     this.vehicleTypes = await this.vehicleTypesService.getAll();
-    console.table(this.vehicleTypes);
   }
 
   public async onClickCreate() {

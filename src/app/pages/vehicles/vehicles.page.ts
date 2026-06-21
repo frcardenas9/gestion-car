@@ -24,7 +24,6 @@ export class VehiclesPage {
 
   public async getAllVehicles() {
     this.vehicles = await this.vehiclesService.getAll();
-    console.table(this.vehicles);
   }
 
   public async onClickCreateVehicle() {

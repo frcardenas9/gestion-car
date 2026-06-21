@@ -107,7 +107,6 @@ export class HomePage {
     all = all.sort((a, b) => b.date.localeCompare(a.date));
 
     this.recentMovements = all;
-    console.table(all);
   }
 
   public dateFormatted(dateOriginal: string) {

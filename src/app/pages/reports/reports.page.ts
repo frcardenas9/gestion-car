@@ -187,6 +187,10 @@ export class ReportsPage {
   public allRefuelExpenses: number;
   public periodSelected: string = 'all';
   public isLoading: boolean = false;
+  public maintenanceTotal: number;
+  public insuranceTotal: number;
+  public othersTotal: number;
+  public fuelTotal: number;
 
   constructor(
     private readonly vehiclesService: VehiclesService,
@@ -213,12 +217,14 @@ export class ReportsPage {
   ) {
     this.periodSelected = event?.detail?.value || 'all';
     this.getAllRefuelExpenses();
+    this.loadFilteredExpenses();
   }
 
   private async getData() {
     this.isLoading = true;
     await this.getAllRefuelExpenses();
     await this.getRefuelChartData();
+    await this.loadFilteredExpenses();
     this.isLoading = false;
   }
 
@@ -353,5 +359,86 @@ export class ReportsPage {
     this.chartColumnOptions.xaxis = {
       categories,
     };
+  }
+
+  private async loadFilteredExpenses() {
+    const allRefuels = await this.refuelService.getAll();
+    const allExpenses = await this.expenseService.getAll();
+
+    const now = new Date();
+
+    const currentMonth = now.getMonth() + 1;
+    const currentYear = now.getFullYear();
+
+    const previousDate = new Date(currentYear, now.getMonth() - 1, 1);
+    const previousMonth = previousDate.getMonth() + 1;
+    const previousYear = previousDate.getFullYear();
+
+    const threeMonthsAgo = new Date();
+    threeMonthsAgo.setMonth(now.getMonth() - 3);
+
+    const sixMonthsAgo = new Date();
+    sixMonthsAgo.setMonth(now.getMonth() - 6);
+
+    const oneYearAgo = new Date();
+    oneYearAgo.setFullYear(now.getFullYear() - 1);
+
+    const matchesFilters = (item: any) => {
+      const vehicleMatch = this.vehicleSelected === -1 || item.vehicleId === this.vehicleSelected;
+
+      const [yearStr, monthStr, dayStr] = item.date.toString().split('-');
+
+      const year = Number(yearStr);
+      const month = Number(monthStr);
+      const day = Number(dayStr);
+
+      const itemDate = new Date(year, month - 1, day);
+
+      let periodMatch = true;
+
+      switch (this.periodSelected) {
+        case 'current':
+          periodMatch = month === currentMonth && year === currentYear;
+          break;
+
+        case 'previous':
+          periodMatch = month === previousMonth && year === previousYear;
+          break;
+
+        case 'three-months':
+          periodMatch = itemDate >= threeMonthsAgo && itemDate <= now;
+          break;
+
+        case 'six-months':
+          periodMatch = itemDate >= sixMonthsAgo && itemDate <= now;
+          break;
+
+        case 'last-year':
+          periodMatch = itemDate >= oneYearAgo && itemDate <= now;
+          break;
+
+        case 'all':
+        default:
+          periodMatch = true;
+      }
+
+      return vehicleMatch && periodMatch;
+    };
+
+    const filteredRefuels = allRefuels.filter(matchesFilters);
+
+    const filteredExpenses = allExpenses.filter(matchesFilters);
+
+    this.maintenanceTotal = filteredExpenses
+      .filter((e) => e.expenseType === 'Mantenimiento')
+      .reduce((acc, e) => acc + e.total, 0);
+
+    this.insuranceTotal = filteredExpenses
+      .filter((e) => e.expenseType === 'Seguros')
+      .reduce((acc, e) => acc + e.total, 0);
+
+    this.othersTotal = filteredExpenses.filter((e) => e.expenseType === 'Otros').reduce((acc, e) => acc + e.total, 0);
+
+    this.fuelTotal = filteredRefuels.reduce((acc, r) => acc + r.total, 0);
   }
 }

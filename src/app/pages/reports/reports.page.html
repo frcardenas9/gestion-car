@@ -47,22 +47,22 @@
       <div class="detail-container">
         <div class="title">
           <p class="body-bold">Detalle</p>
+          <div class="text">
+            <p>${{ allRefuelExpenses | number: "1.0-0" }}</p>
+          </div>
         </div>
         <div class="content">
-          <div class="text">
-            <p>$837.000</p>
-          </div>
           <div class="value">
-            <p class="value-item"><span class="dot"></span> Recargas</p>
-            <p class="value-item"><span class="dot"></span> Servicios</p>
+            <p class="value-item"><span class="dot"></span> Combustible</p>
+            <p class="value-item"><span class="dot"></span> Mantenimiento</p>
             <p class="value-item"><span class="dot"></span> Seguros</p>
             <p class="value-item"><span class="dot"></span> Otros</p>
           </div>
           <div class="description">
-            <p>$485.500</p>
-            <p>$0</p>
-            <p>$0</p>
-            <p>$0</p>
+            <p>${{ fuelTotal | number: "1.0-0" }}</p>
+            <p>${{ maintenanceTotal | number: "1.0-0" }}</p>
+            <p>${{ insuranceTotal | number: "1.0-0" }}</p>
+            <p>${{ othersTotal | number: "1.0-0" }}</p>
           </div>
         </div>
       </div>

@@ -47,7 +47,6 @@ export class BrandsComponent implements OnInit {
 
   public async getAll() {
     this.brands = await this.brandsService.getAll();
-    console.table(this.brands);
   }
 
   public async onClickCreate() {

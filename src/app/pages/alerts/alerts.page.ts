@@ -33,8 +33,6 @@ export class AlertsPage {
     this.alerts = this.alertsService.mapAlerts(this.alerts);
 
     this.alertsCounter = this.alertsService.getAlertsCounter(this.alerts);
-
-    console.table(this.alerts);
   }
 
   public async onClickCreateAlert() {

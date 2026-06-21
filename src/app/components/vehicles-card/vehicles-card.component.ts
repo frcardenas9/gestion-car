@@ -205,7 +205,6 @@ export class VehiclesCardComponent implements OnInit {
         .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
         .sort((a, b) => b.odometer - a.odometer);
       this.calculatePerformance(this.refuelsByVehicle);
-      console.table(this.refuelsByVehicle);
     });
   }
 
@@ -215,7 +214,6 @@ export class VehiclesCardComponent implements OnInit {
       this.expensesByVehicle
         .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
         .sort((a, b) => b.odometer - a.odometer);
-      console.table(this.expensesByVehicle);
     });
   }
 
