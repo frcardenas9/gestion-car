@@ -2,9 +2,30 @@
 
 <ion-content class="container">
   <div class="main-container">
-    <app-summary-card></app-summary-card>
+    <app-summary-card
+      [currentMonth]="currentMonth"
+      [summary]="{
+        month: {
+          fuel: summary?.month?.fuel,
+          maintenance: summary?.month?.maintenance,
+          insurance: summary?.month?.insurance,
+          others: summary?.month?.others,
+        },
+      }"
+    ></app-summary-card>
 
-    <app-expenses-card></app-expenses-card>
+    <app-expenses-card
+      [firstMonth]="firstMonth"
+      [summary]="{
+        allTime: {
+          fuel: summary?.allTime?.fuel,
+          maintenance: summary?.allTime?.maintenance,
+          insurance: summary?.allTime?.insurance,
+          others: summary?.allTime?.others,
+          total: summary?.allTime?.total,
+        },
+      }"
+    ></app-expenses-card>
 
     <app-upcoming-alerts-card></app-upcoming-alerts-card>
 

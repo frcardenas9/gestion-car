@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EmptyStateCardComponent, CreateEditVehicleTypeFormComponent } from '@components/index';
-import { ModalController } from '@ionic/angular';
+import { ModalController, PopoverController } from '@ionic/angular';
 import {
   IonContent,
   IonLabel,
@@ -37,10 +37,12 @@ export class VehicleTypesComponent implements OnInit {
     private readonly vehicleTypesService: VehicleTypesService,
     private readonly modalController: ModalController,
     private readonly sweetAlertService: SweetAlertService,
+    private readonly popoverController: PopoverController,
   ) {}
 
   ngOnInit() {
     this.getAll();
+    this.popoverController.dismiss();
   }
 
   public async getAll() {

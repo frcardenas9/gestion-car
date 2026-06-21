@@ -1,23 +1,28 @@
 <div class="summary-container">
   <div class="title">
     <p class="body-bold">Resumen del mes</p>
-    <p class="caption">Mayo 2026</p>
+    <p class="caption">{{ currentMonth() }}</p>
   </div>
   <div class="content">
     <div class="item">
-      <ion-icon color="primary" src="assets/icons/gas-pump-alt.svg"></ion-icon>
-      <p class="body-bold">$245k</p>
+      <ion-icon color="primary" src="assets/icons/fuel-gauge.svg"></ion-icon>
+      <p class="body-bold">${{ summary()?.month?.fuel | number: "1.0-0" }}</p>
       <p class="small">Combustible</p>
     </div>
     <div class="item">
-      <ion-icon color="primary" src="assets/icons/gas-pump-alt.svg"></ion-icon>
-      <p class="body-bold">$245k</p>
-      <p class="small">Combustible</p>
+      <ion-icon color="primary" src="assets/icons/tools.svg"></ion-icon>
+      <p class="body-bold">${{ summary()?.month?.maintenance | number: "1.0-0" }}</p>
+      <p class="small">Mantenimiento</p>
     </div>
     <div class="item">
-      <ion-icon color="primary" src="assets/icons/gas-pump-alt.svg"></ion-icon>
-      <p class="body-bold">$245k</p>
-      <p class="small">Combustible</p>
+      <ion-icon color="primary" src="assets/icons/user-shield.svg"></ion-icon>
+      <p class="body-bold">${{ summary()?.month?.insurance | number: "1.0-0" }}</p>
+      <p class="small">Seguros</p>
+    </div>
+    <div class="item">
+      <ion-icon color="primary" src="assets/icons/sack-dollar.svg"></ion-icon>
+      <p class="body-bold">${{ summary()?.month?.others | number: "1.0-0" }}</p>
+      <p class="small">Otros</p>
     </div>
   </div>
 </div>

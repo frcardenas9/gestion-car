@@ -1,6 +1,6 @@
 export interface RefuelModel {
   id?: number;
-  date?: Date;
+  date?: string;
   odometer?: number;
   price?: number;
   total?: number;

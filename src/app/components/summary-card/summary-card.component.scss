@@ -24,7 +24,7 @@
       flex-direction: column;
       align-items: center;
       gap: 4px;
-      flex: 1;
+      flex: 0 0 calc(50% - 0.5rem);
       border-radius: 12px;
       padding: 16px;
       background-color: var(--ion-color-secondary);
