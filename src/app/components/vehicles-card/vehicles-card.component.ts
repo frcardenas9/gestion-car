@@ -48,6 +48,7 @@ export class VehiclesCardComponent implements OnInit {
       .then(async (result) => {
         if (result.isConfirmed) {
           await this.refuelService.deleteRefuelsByVehicleId(this.vehicle().id);
+          await this.expenseService.deleteExpensesByVehicleId(this.vehicle().id);
           await this.vehiclesService.delete(this.vehicle().id);
 
           this.getAllVehicles.emit(true);
