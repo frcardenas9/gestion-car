@@ -5,6 +5,8 @@ export interface ExpenseModel {
   odometer?: number;
   total?: number;
   vehicleId?: number;
+  vehicleName?: string;
+  dateFormatted?: string;
 }
 
 export interface ExpensesSummary {

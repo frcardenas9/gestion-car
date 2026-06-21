@@ -1,44 +1,23 @@
 <div class="recent-activity-container">
   <div class="title">
     <p class="body-bold">Actividad reciente</p>
-    <ion-button fill="clear">Ver reportes</ion-button>
+    <ion-button fill="clear" (click)="onClickOpenReports()">Ver reportes</ion-button>
   </div>
   <div class="content">
-    <div class="item">
-      <div class="icon">
-        <ion-icon src="assets/icons/wrench-alt.svg"></ion-icon>
+    @for (item of recentMovements(); track $index) {
+      <div class="item">
+        <div class="icon">
+          <ion-icon src="assets/icons/car-alt.svg"></ion-icon>
+        </div>
+        <div class="text">
+          <p class="body-bold">{{ item?.expenseType ?? "Recarga" }}</p>
+          <p class="body">{{ item?.vehicleName }}</p>
+          <p class="caption">{{ item?.dateFormatted }}</p>
+        </div>
+        <div class="value">
+          <p class="body-bold">${{ item?.total | number: "1.0-0" }}</p>
+        </div>
       </div>
-      <div class="text">
-        <p class="body-bold">Cambio de aceite - Mazda 3</p>
-        <p class="caption">30/05/2026</p>
-      </div>
-      <div class="value">
-        <p class="body-bold">$52.400</p>
-      </div>
-    </div>
-    <div class="item">
-      <div class="icon">
-        <ion-icon src="assets/icons/wrench-alt.svg"></ion-icon>
-      </div>
-      <div class="text">
-        <p class="body-bold">Cambio de aceite - Mazda 3</p>
-        <p class="caption">30/05/2026</p>
-      </div>
-      <div class="value">
-        <p class="body-bold">$52.400</p>
-      </div>
-    </div>
-    <div class="item">
-      <div class="icon">
-        <ion-icon src="assets/icons/wrench-alt.svg"></ion-icon>
-      </div>
-      <div class="text">
-        <p class="body-bold">Cambio de aceite - Mazda 3</p>
-        <p class="caption">30/05/2026</p>
-      </div>
-      <div class="value">
-        <p class="body-bold">$52.400</p>
-      </div>
-    </div>
+    }
   </div>
 </div>

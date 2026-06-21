@@ -21,19 +21,19 @@
     .item {
       display: flex;
       gap: 16px;
-      border: 1px solid var(--ion-color-primary);
+      border: 1px solid var(--border-color);
       padding: 16px;
       border-radius: 12px;
       align-items: center;
-      background-color: var(--ion-color-primary-tint);
+      background-color: var(--ion-color-white);
 
       .icon {
         ion-icon {
           height: 16px;
           width: 16px;
-          background-color: var(--ion-color-primary);
+          background-color: var(--background-color);
           border-radius: 50%;
-          color: var(--ion-color-white);
+          color: var(--color);
           padding: 12px;
         }
       }

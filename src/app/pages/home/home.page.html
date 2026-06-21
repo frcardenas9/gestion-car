@@ -27,8 +27,12 @@
       }"
     ></app-expenses-card>
 
-    <app-upcoming-alerts-card></app-upcoming-alerts-card>
+    @if (alerts?.length) {
+      <app-upcoming-alerts-card [alerts]="alerts"></app-upcoming-alerts-card>
+    }
 
-    <app-recent-activity-card></app-recent-activity-card>
+    @if (recentMovements?.length) {
+      <app-recent-activity-card [recentMovements]="recentMovements"></app-recent-activity-card>
+    }
   </div>
 </ion-content>

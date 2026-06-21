@@ -7,5 +7,8 @@ export interface RefuelModel {
   fuelAmount?: number;
   isFilling?: boolean;
   vehicleId?: number;
+  vehicleName?: string;
   performance: number;
+  dateFormatted?: string;
+  expenseType?: string;
 }

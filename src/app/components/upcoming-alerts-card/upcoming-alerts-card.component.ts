@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, input } from '@angular/core';
+import { Router } from '@angular/router';
 import { IonButton, IonIcon } from '@ionic/angular/standalone';
+import { AlertModel } from '@models/index';
 
 @Component({
   selector: 'app-upcoming-alerts-card',
@@ -7,8 +9,12 @@ import { IonButton, IonIcon } from '@ionic/angular/standalone';
   styleUrls: ['./upcoming-alerts-card.component.scss'],
   imports: [IonButton, IonIcon],
 })
-export class UpcomingAlertsCardComponent implements OnInit {
-  constructor() {}
+export class UpcomingAlertsCardComponent {
+  public alerts = input.required<AlertModel[]>();
 
-  ngOnInit() {}
+  constructor(private readonly router: Router) {}
+
+  public onClickOpenAlerts() {
+    this.router.navigate(['/tabs/alerts']);
+  }
 }
